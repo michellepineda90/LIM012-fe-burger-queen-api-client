@@ -139,30 +139,6 @@ pendientes de tu proyecto anterior.
 * [ ] Que es [Workbox](https://developers.google.com/web/tools/workbox)
 * [ ] Qué es un `serviceWorker`
 
-### Angular
-
-* [ ] [Uso de Components | Templates](https://angular.io/guide/architecture-components#introduction-to-components)
-* [ ] [Directivas estructurales (ngIf / ngFor)](https://angular.io/guide/template-syntax#built-in-structural-directives)
-* [ ] [@Input | @Ouput](https://angular.io/guide/component-interaction#component-interaction)
-* [ ] [Creación y uso de servicios](https://angular.io/guide/architecture-services#providing-services)
-* [ ] [Manejos de rutas](https://angular.io/guide/router)
-* [ ] [Uso de Observables](https://angular.io/guide/observables-in-angular)
-* [ ] [Uso de HttpClient](https://angular.io/guide/http)
-* [ ] [Estilos de componentes (ngStyle / ngClass)](https://angular.io/guide/template-syntax#built-in-directives)
-
-### React
-
-* [ ] [`JSX`](https://es.reactjs.org/docs/introducing-jsx.html)
-* [ ] [Componentes `class` y componentes `function`](https://es.reactjs.org/docs/components-and-props.html#function-and-class-components)
-* [ ] `props`
-* [ ] [Manejo de eventos](https://es.reactjs.org/docs/handling-events.html)
-* [ ] [Listas y keys](https://es.reactjs.org/docs/lists-and-keys.html)
-* [ ] [Renderizado condicional](https://es.reactjs.org/docs/conditional-rendering.html)
-* [ ] [Levantamiento de estados](https://es.reactjs.org/docs/lifting-state-up.html)
-* [ ] [`hooks`](https://es.reactjs.org/docs/hooks-intro.html)
-* [ ] [`CSS` modules](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)
-* [ ] [React Router](https://reacttraining.com/react-router/web)
-
 ### APIs REST
 
 * [ ] Consumos de APIs REST
@@ -390,11 +366,6 @@ para mantener actualizado el menú.
 
 ## 6. Pistas / Tips
 
-### Frameworks / libraries
-
-* [React](https://reactjs.org/)
-* [Angular](https://angular.io/)
-
 ### Herramientas
 
 * [npm-scripts](https://docs.npmjs.com/misc/scripts)
@@ -409,3 +380,28 @@ para mantener actualizado el menú.
 * [Tu primera Progressive Web App - Google developers](https://developers.google.com/web/fundamentals/codelabs/your-first-pwapp/?hl=es)
 * [Progressive Web Apps - codigofacilito.com](https://codigofacilito.com/articulos/progressive-apps)
 * [Usando Service Workers - MDN](https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API/Using_Service_Workers)
+
+# burger-queer Vue
+
+## Project setup
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+```
+npm run build
+```
+
+### Lints and fixes files
+```
+npm run lint
+```
+
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

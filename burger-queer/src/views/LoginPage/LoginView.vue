@@ -8,9 +8,8 @@
         <button class="role-btn">Mesero/a</button>
         <button class="role-btn">Jefe de cocina</button>
         <button class="role-btn">Administrador</button>
-    </div>
+      </div>
   </div>
 </template>
 
-<script src="./Login.js"></script>
-<style lang="scss" src="../Login/_Login.scss"></style>
+<script src="./LoginView.js"></script>

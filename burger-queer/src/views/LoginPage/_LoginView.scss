@@ -5,25 +5,30 @@
 }
 
 .login-background-img {
+    background-image: url("../assets/background-img-logo.png");
     width: 50%;
+    height: 100vh;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .logo {
-    max-width: 300px;
-    margin: auto;
+    max-width: 250px;
+    max-height: 260px;
 }
 
 .login-choices {
     display: flex;
     flex-flow: column nowrap;
     justify-content: space-between;
+    align-items: center;
+    width: 50%;
 }
 
 .role-btn {
-    width: 337px;
-    height: 80px;
+    width: 275px;
+    height: 65px;
     font-size: 36px;
     font-style: normal;
     font-weight: normal;

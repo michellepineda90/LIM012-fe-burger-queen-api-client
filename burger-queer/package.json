@@ -39,7 +39,8 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "airbnb-base"
     ],
     "parserOptions": {
       "parser": "babel-eslint"

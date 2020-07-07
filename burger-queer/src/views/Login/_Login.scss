@@ -1,0 +1,31 @@
+.login {
+    width: 100%;
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.login-background-img {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.logo {
+    max-width: 300px;
+    margin: auto;
+}
+
+.login-choices {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-between;
+}
+
+.role-btn {
+    width: 337px;
+    height: 80px;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: normal;
+    border-radius: 10px;
+}

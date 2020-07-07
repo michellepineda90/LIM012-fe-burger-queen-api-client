@@ -5,14 +5,15 @@
 </template>
 
 <script>
-import Login from './components/Login/Login.vue'
+
+import Login from './views/Login/Login.vue'
 
 export default {
   name: 'App',
   components: {
     Login
-  }
+  }, 
 }
 </script>
 
-<style src="./App.scss"></style>
+<style lang="scss" src="../src/scss/main.scss"></style>

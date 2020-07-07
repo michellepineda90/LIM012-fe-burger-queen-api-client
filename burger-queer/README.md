@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# burger-queer
-=======
 ## Burger Queen (API Client)
 
 ## Índice
@@ -385,7 +382,6 @@ para mantener actualizado el menú.
 * [Usando Service Workers - MDN](https://developer.mozilla.org/es/docs/Web/API/Service_Worker_API/Using_Service_Workers)
 
 # burger-queer Vue
->>>>>>> 60d15bc48232cdbe2cea8bfcfce5a9a7afca0739
 
 ## Project setup
 ```

@@ -6,7 +6,7 @@
 
 <script>
 
-import Login from './views/Login/Login.vue'
+import Login from './views/LoginPage/LoginView.vue'
 
 export default {
   name: 'App',

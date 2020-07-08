@@ -9,7 +9,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
     export default {
+=======
+export default {
+>>>>>>> 0ae3199db53385ab09209cc9f593c34386b1516a
     name: 'App',
     components: {
 

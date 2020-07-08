@@ -6,9 +6,8 @@
       <div class="login-choices">
         <h1 class="title-text">Escoge una<br>opción</h1>
         <router-link to="/credentials" tag="button" class="role-btn">Mesero/a</router-link>
-        <button class="role-btn">Mesero/a</button>
-        <button class="role-btn">Jefe de cocina</button>
-        <button class="role-btn">Administrador</button>
+        <router-link to="/credentials" tag="button" class="role-btn">Jefe de cocina</router-link>
+        <router-link to="/credentials" tag="button" class="role-btn">Administrador</router-link>
       </div>
   </div>
 </template>
@@ -22,6 +21,7 @@ export default {
 </script>
 
 <style lang="scss">
+  
   $color1: #FF5E53;
   $color2: white;
 

@@ -40,6 +40,7 @@ export default {
             background-position: center;
             background-size: cover;
             background-color: rgba($color: #000000, $alpha: 0);
+            outline: none;
         }
 
         .login-form {

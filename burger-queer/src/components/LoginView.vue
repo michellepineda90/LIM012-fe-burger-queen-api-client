@@ -16,12 +16,11 @@
 
 export default {
 
-}
+};
 
 </script>
 
 <style lang="scss">
-  
   $color1: #FF5E53;
   $color2: white;
 
@@ -37,6 +36,7 @@ export default {
       background-position: center;
       background-size: cover;
       background-repeat: no-repeat;
+      background-color: black;
       grid-column: 1 / 2;
       height: 100vh;
       display: flex;

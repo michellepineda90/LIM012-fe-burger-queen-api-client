@@ -1,8 +1,6 @@
 <template>
     <div class="credentials">
-        <div>
-            <router-link to="" tag="button" class="back-btn"></router-link>
-        </div>
+        <router-link to="/" tag="button" class="back-btn"></router-link>
         <div class="login-form">
             <img src="../assets/logo-2.png" alt="">
             <h2>Inicia sesión</h2>
@@ -17,28 +15,52 @@
 <script>
 export default {
 
-  }
+};
 </script>
 
 <style lang="scss">
-
-    $width: 430px;
-    $height: 60px;
+    @mixin width-height($width, $height) {
+        width: $width;
+        height: $height;
+    };
 
     .credentials {
-        display: flex;
-        height: 100vh;
-        flex-direction: row;
+        display: grid;
         align-items: center;
-        justify-content: space-evenly;
-        padding: 80px 0;
+        height: 100vh;
+        grid-template-columns: 10% 90%;
+        grid-template-rows: 100%;
+
+        .back-btn {
+            grid-column: 1 / 2;
+            justify-self: end;
+            border: none;
+            border-radius: 50%;
+            background-image: url("../assets/btn-back.svg");
+            background-position: center;
+            background-size: cover;
+            background-color: rgba($color: #000000, $alpha: 0);
+        }
+
+        .login-form {
+            height: 80%;
+            grid-column: 2 / 3;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+
+            h2 {
+                font-size: 36px;
+            }
+        }
+
         img {
             max-width: 240px;
         }
 
         .input {
-            width: $width;
-            height: $height;
+            @include width-height(430px, 60px);
             border: 2px solid black;
             text-align: center;
             font-size: 36px;
@@ -48,10 +70,14 @@ export default {
         }
 
         .login-btn {
-            width: $width;
-            height: $height;
+            @include width-height(300px, 60px);
             background-color: #000;
             color: #AFAFAF;
+            font-size: 36px;
+            border: none;
+            outline: none;
+            border-radius: 10px;
+            color: white;
         }
     }
 </style>

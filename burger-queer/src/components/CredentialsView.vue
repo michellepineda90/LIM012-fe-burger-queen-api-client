@@ -28,7 +28,7 @@ export default {
         display: grid;
         align-items: center;
         height: 100vh;
-        grid-template-columns: 10% 90%;
+        grid-template-columns: 10% 80% 10%;
         grid-template-rows: 100%;
 
         .back-btn {

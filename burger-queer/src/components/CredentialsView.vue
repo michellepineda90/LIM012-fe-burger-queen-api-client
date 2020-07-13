@@ -6,7 +6,7 @@
             <h2>Inicia sesión</h2>
             <input class="input" type="email" placeholder="email">
             <input class="input" type="password" placeholder="contraseña">
-            <router-link to="" tag="button" class="login-btn">Entrar</router-link>
+            <router-link to="/manager" tag="button" class="login-btn">Entrar</router-link>
             <!-- Aqui es donde deberíamos usar el post method? -->
         </div>
     </div>
@@ -28,7 +28,7 @@ export default {
         display: grid;
         align-items: center;
         height: 100vh;
-        grid-template-columns: 10% 90%;
+        grid-template-columns: 10% 80% 10%;
         grid-template-rows: 100%;
 
         .back-btn {

@@ -10,8 +10,14 @@
         </div>
         <div class="modal" v-if="modal">
             <div class="modal-employee">
-                <h1>Nombre</h1>
+                <h2>Nombre</h2>
                 <input type="text">
+                <h2>Correo electrónico</h2>
+                <input type="text">
+                <h2>Puesto</h2>
+                <input type="text">
+                <button class="btn-close-modal" v-on:click="modal=false"></button>
+                <button class="add-employee">Agregar trabajador</button>
             </div>
         </div>
         <div class="buttons">
@@ -40,6 +46,14 @@ export default {
 </script>
 
 <style lang="scss">
+    @mixin background-img($color, $url, $size, $border, $radius) {
+        background-color: $color;
+        background-image: url($url);
+        background-size: $size;
+        border: $border;
+        border-radius: $radius;
+    }
+
     .manager {
         height: 100vh;
         display: grid;
@@ -79,6 +93,18 @@ export default {
         justify-content: center;
         align-self: end;
         justify-self: start;
+
+        h3 {
+            width: 65px;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .btn-new-employee {
+            width: 65px;
+            height: 65px;
+            @include background-img(transparent,'../assets/btn-new-employee.svg', contain, none, 50%);
+        }
     }
 
     .modal {
@@ -91,26 +117,48 @@ export default {
         background-color: rgba($color: #000000, $alpha: 0.4);
 
         .modal-employee {
-            width: 500px;
-            height: 600px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 480px;
+            height: 580px;
             background-color: white;
+            border-radius: 20px;
+            padding: 40px;
+
+            h2 {
+                text-align: left;
+            }
+
+            input {
+                width: 300px;
+                height: 45px;
+                border-radius: 10px;
+                border-style: none;
+                border: 1px solid black;
+            }
+
+            .btn-close-modal {
+                position: absolute;
+                top: 40px;
+                right: 40px;
+                width: 50px;
+                height: 50px;
+                @include background-img(transparent,'../assets/btn-exit.svg', contain, none, 50%);
+            }
+
+            .add-employee {
+                width: 330px;
+                height: 60px;
+                align-self: center;
+                border-radius: 10px;
+                background-color: #00C7D4;
+                border-style: none;
+                font-size: 28px;
+                font-weight: 600;
+            }
         }
-    }
-
-    h3 {
-        width: 65px;
-        font-size: 12px;
-        margin-bottom: 10px;
-    }
-
-    .btn-new-employee {
-        width: 65px;
-        height: 65px;
-        background-color: transparent;
-        background-image: url(../assets/btn-new-employee.svg);
-        background-size: contain;
-        border: none;
-        border-radius: 50%;
     }
 
     .buttons {

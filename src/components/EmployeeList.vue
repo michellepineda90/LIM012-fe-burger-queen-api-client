@@ -3,8 +3,8 @@
         <div class="each-employee">
             <h3>Name</h3>
             <h3>Role</h3>
-            <button class="btn-edit-employee"></button>
-            <button class="btn-delete-employee"></button>
+            <button class="edit-employee-btn"></button>
+            <button class="delete-employee-btn"></button>
         </div>
     </div>
 </template>
@@ -41,19 +41,21 @@ export default {
                 font-size: 25px;
             }
 
-            .btn-edit-employee, .btn-delete-employee {
+            .edit-employee-btn, .delete-employee-btn {
                 width: 50px;
                 height: 50px;
                 background-size: contain;
                 border: none;
                 background-color: transparent;
+                outline: none;
+                cursor: pointer;
             }
 
-            .btn-edit-employee {
+            .edit-employee-btn {
                 background-image: url(../assets/btn-edit.svg);
             }
 
-            .btn-delete-employee {
+            .delete-employee-btn {
                 background-image: url(../assets/btn-delete.svg);
             }
         }

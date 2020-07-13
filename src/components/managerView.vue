@@ -1,9 +1,9 @@
 <template>
     <div class="manager">
         <navComponent fullname="manager"/>
-        <router-link to="" tag="button" class="back-btn-prev"></router-link>
-        <list-employees />
-        <router-link to="" tag="button" class="back-btn-next"></router-link>
+        <router-link to="" tag="button" class="btn-prev"></router-link>
+        <EmployeeList />
+        <router-link to="" tag="button" class="btn-next"></router-link>
         <div class="new-employee">
             <h3>Agregar trabajador</h3>
             <button class="btn-new-employee" v-on:click="modal=true"></button>
@@ -29,7 +29,7 @@
 
 <script>
 import navComponent from './navComponent.vue';
-import listEmployees from './listEmployees.vue';
+import EmployeeList from './EmployeeList.vue';
 
 export default {
   name: 'managerView',
@@ -40,7 +40,7 @@ export default {
   },
   components: {
     navComponent,
-    listEmployees,
+    EmployeeList,
   },
 };
 </script>
@@ -61,7 +61,7 @@ export default {
         grid-template-rows: 10% 78% 12%;
     }
 
-    .back-btn-prev, .back-btn-next {
+    .btn-prev, .btn-next {
         width: 65px;
         height: 65px;
         border: none;
@@ -69,16 +69,18 @@ export default {
         align-self: center;
         background-color: transparent;
         background-size: contain;
+        outline: none;
+        cursor: pointer;
     }
 
-    .back-btn-prev {
+    .btn-prev {
         grid-column: 1 /2;
         grid-row: 2 / 3;
         justify-self: end;
         background-image: url(../assets/btn-prev.svg);
     }
 
-    .back-btn-next {
+    .btn-next {
         grid-column: 3 / 4;
         grid-row: 2 / 3;
         background-image: url(../assets/btn-next.svg);
@@ -103,6 +105,8 @@ export default {
         .btn-new-employee {
             width: 65px;
             height: 65px;
+            outline: none;
+            cursor: pointer;
   // @include background-img(transparent,'../assets/btn-new-employee.svg', contain, none, 50%);
         }
     }
@@ -145,6 +149,8 @@ export default {
                 right: 40px;
                 width: 50px;
                 height: 50px;
+                outline: none;
+                cursor: pointer;
                 @include background-img(transparent,'../assets/btn-exit.svg', contain, none, 50%);
             }
 
@@ -157,6 +163,8 @@ export default {
                 border-style: none;
                 font-size: 28px;
                 font-weight: 600;
+                outline: none;
+              cursor: pointer;
             }
         }
     }
@@ -180,11 +188,15 @@ export default {
 
         .list {
             background-color: #00C7D4;
+            outline: none;
+            cursor: pointer;
         }
 
         .products {
             background-color: white;
             border: 1px solid black;
+            outline: none;
+            cursor: pointer;
         }
     }
 </style>

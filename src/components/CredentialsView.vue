@@ -77,6 +77,7 @@ export default {
             font-size: 36px;
             border: none;
             outline: none;
+            cursor: pointer;
             border-radius: 10px;
             color: white;
         }

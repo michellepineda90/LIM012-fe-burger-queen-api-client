@@ -1,7 +1,7 @@
 <template>
     <div class="nav-style">
         <H2>¡Bienvenido {{ fullname }}!</H2>
-        <router-link to="/" tag="h2" class="btn-sign-out">Cerrar sesión</router-link>
+        <router-link to="/" tag="h2" class="sign-out">Cerrar sesión</router-link>
     </div>
 </template>
 
@@ -30,9 +30,10 @@ export default {
             font-weight: 500;
         }
 
-        .btn-sign-out {
+        .sign-out {
             font-size: 28px;
             font-weight: 800;
+            cursor: pointer;
         }
     }
 </style>

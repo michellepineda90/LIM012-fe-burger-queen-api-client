@@ -69,5 +69,6 @@ export default {
       color: $color2;
       border-style: none;
       outline: none;
+      cursor: pointer;
   }
 </style>

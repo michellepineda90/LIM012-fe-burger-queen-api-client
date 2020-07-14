@@ -21,8 +21,12 @@
             </div>
         </div>
         <div class="buttons">
-            <router-link to="/" tag="button" class="btn-manager list">Trabajadores</router-link>
-            <router-link to="/" tag="button" class="btn-manager products">Productos</router-link>
+            <router-link to="" tag="button"
+            class="btn-manager"
+            @click="currentView = !currentView"
+            :class="{current: currentView}"
+            >Trabajadores</router-link>
+            <router-link to="" tag="button" class="btn-manager">Productos</router-link>
         </div>
     </div>
 </template>
@@ -36,6 +40,7 @@ export default {
   data() {
     return {
       modal: false,
+      currentView: true,
     };
   },
   components: {
@@ -184,19 +189,15 @@ export default {
             font-weight: 800;
             border-radius: 10px;
             border: none;
-        }
-
-        .list {
-            background-color: #00C7D4;
             outline: none;
             cursor: pointer;
-        }
-
-        .products {
             background-color: white;
             border: 1px solid black;
-            outline: none;
-            cursor: pointer;
+        }
+
+        .current {
+            background-color: #00C7D4;
+            border: none;
         }
     }
 </style>

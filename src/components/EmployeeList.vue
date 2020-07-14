@@ -33,9 +33,7 @@ export default {
     .employees-list {
         display: flex;
         width: 90%;
-        height: 500px;
         overflow: scroll;
-        // height: fit-content;
         grid-column: 2 / 3;
         grid-row: 2 / 3;
         flex-direction: column;
@@ -45,7 +43,6 @@ export default {
         margin: 40px auto;
 
         .each-employee {
-            height: 100%;
             display: flex;
             flex-direction: row;
             justify-content: space-between;

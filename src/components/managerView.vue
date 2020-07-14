@@ -17,7 +17,7 @@
                 <h2>Puesto</h2>
                 <input type="text" v-model="role">
                 <button class="btn-close-modal" v-on:click="modal=false"></button>
-                <button class="add-employee" @click="addEmployee">Agregar trabajador</button>
+                <button class="add-employee" @click="addEmployee" v-on:click="modal=false">Agregar trabajador</button>
             </div>
         </div>
         <div class="buttons">

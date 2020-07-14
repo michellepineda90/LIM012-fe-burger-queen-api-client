@@ -6,8 +6,9 @@
             <h2>Inicia sesión</h2>
             <input class="input" type="email" placeholder="email">
             <input class="input" type="password" placeholder="contraseña">
-            <router-link to="/manager" tag="button" class="login-btn">Entrar</router-link>
-            <!-- Aqui es donde deberíamos usar el post method? -->
+            <router-link to="/manager/employees" tag="button" class="login-btn">Entrar</router-link>
+            <!-- Aqui es donde deberíamos usar el post method y redirigir a la vista
+            correspondiente-->
         </div>
     </div>
 </template>

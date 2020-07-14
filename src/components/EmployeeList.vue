@@ -10,21 +10,21 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
-  name: 'listEmployees',
+  name: 'EmployeeList',
   data() {
     return {
-      info: [],
+
     };
   },
+  computed: {
+    info() {
+      return this.$store.state.employees;
+    },
+  },
   created() {
-    axios
-      .get('http://localhost:3000/users')
-      .then((result) => {
-        this.info = result.data;
-      });
+    this.$store.dispatch('getEmployees');
   },
 };
 </script>
@@ -33,7 +33,9 @@ export default {
     .employees-list {
         display: flex;
         width: 90%;
-        height: fit-content;
+        height: 500px;
+        overflow: scroll;
+        // height: fit-content;
         grid-column: 2 / 3;
         grid-row: 2 / 3;
         flex-direction: column;

@@ -11,13 +11,13 @@
         <div class="modal" v-if="modal">
             <div class="modal-employee">
                 <h2>Nombre</h2>
-                <input type="text">
+                <input type="text" v-model="user">
                 <h2>Correo electrónico</h2>
-                <input type="text">
+                <input type="text" v-model="email">
                 <h2>Puesto</h2>
-                <input type="text">
+                <input type="text" v-model="role">
                 <button class="btn-close-modal" v-on:click="modal=false"></button>
-                <button class="add-employee">Agregar trabajador</button>
+                <button class="add-employee" @click="addEmployee">Agregar trabajador</button>
             </div>
         </div>
         <div class="buttons">
@@ -32,6 +32,7 @@
 </template>
 
 <script>
+import axios from 'axios';
 import navComponent from './navComponent.vue';
 import EmployeeList from './EmployeeList.vue';
 
@@ -41,11 +42,30 @@ export default {
     return {
       modal: false,
       currentView: true,
+      user: '',
+      email: '',
+      role: '',
     };
   },
   components: {
     navComponent,
     EmployeeList,
+  },
+  methods: {
+    addEmployee() {
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/users',
+        data: {
+          firstName: this.user,
+          email: this.email,
+          role: this.role,
+        },
+      })
+        .then(() => {
+          this.$store.dispatch('getEmployees');
+        });
+    },
   },
 };
 </script>

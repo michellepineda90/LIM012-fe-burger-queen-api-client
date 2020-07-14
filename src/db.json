@@ -19,6 +19,18 @@
       "email": "alice@gmail.com",
       "role": "Mesera",
       "id": "lMsgbJh"
+    },
+    {
+      "firstName": "a",
+      "email": "a",
+      "role": "a",
+      "id": "LqNSSeV"
+    },
+    {
+      "firstName": "e",
+      "email": "e",
+      "role": "e",
+      "id": "Qc8usfS"
     }
   ],
   "companies": [
@@ -36,6 +48,18 @@
       "id": "3",
       "name": "Google",
       "description": "Founded by Larry Page and Sergey Brin"
+    }
+  ],
+  "auth": [
+    {
+      "email": "eee",
+      "password": "eee",
+      "id": 1
+    },
+    {
+      "email": "eee",
+      "password": "eee",
+      "id": 2
     }
   ]
 }

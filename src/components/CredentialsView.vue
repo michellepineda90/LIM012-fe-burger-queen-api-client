@@ -31,12 +31,15 @@ export default {
   },
   methods: {
     sendCredentials() {
-      axios.post('http://localhost:3000/auth', {
-        email: this.email,
-        password: this.password,
+      axios({
+        method: 'post',
+        url: 'http://localhost:3000/auth',
+        data: {
+          email: this.email,
+          password: this.password,
+        },
       })
-        .then((response) => { console.log(response); })
-        .catch((error) => { console.log(error); });
+        .then((response) => { console.log(response); });
     },
   },
 };

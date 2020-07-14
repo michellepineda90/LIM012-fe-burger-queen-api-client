@@ -21,18 +21,8 @@
             </div>
         </div>
         <div class="buttons">
-            <router-link to="" tag="button"
-              class="btn-manager"
-              @click.native="currentView = !currentView"
-              :class="toggleInactive"
-              >Trabajadores
-            </router-link>
-            <router-link to="" tag="button"
-              class="btn-manager"
-              @click.native="inactiveView = !inactiveView"
-              :class="toggleActive"
-              >Productos
-            </router-link>
+            <router-link to="" tag="button" class="btn-manager">Trabajadores</router-link>
+            <router-link to="" tag="button" class="btn-manager">Productos</router-link>
         </div>
     </div>
 </template>

@@ -1,8 +1,8 @@
 <template>
     <div class="employees-list">
-        <div class="each-employee">
-            <h3>{{ firstName }}</h3>
-            <h3>{{ role }}</h3>
+        <div v-for="item in info" :key="item.id" class="each-employee">
+            <h3 v-bind:firstName="item.firstName"> {{ item.firstName }} </h3>
+            <h3> {{ item.role }} </h3>
             <button class="edit-employee-btn"></button>
             <button class="delete-employee-btn"></button>
         </div>
@@ -16,16 +16,14 @@ export default {
   name: 'listEmployees',
   data() {
     return {
-      firstName: null,
-      role: null,
+      info: [],
     };
   },
   created() {
     axios
       .get('http://localhost:3000/users')
       .then((result) => {
-        this.firstName = result.data[2].firstName;
-        this.role = result.data[2].role;
+        this.info = result.data;
       });
   },
 };

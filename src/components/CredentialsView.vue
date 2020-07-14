@@ -4,19 +4,43 @@
         <div class="login-form">
             <img src="../assets/logo-2.png" alt="">
             <h2>Inicia sesión</h2>
-            <input class="input" type="email" placeholder="email">
-            <input class="input" type="password" placeholder="contraseña">
-            <router-link to="/manager/employees" tag="button" class="login-btn">Entrar</router-link>
-            <!-- Aqui es donde deberíamos usar el post method y redirigir a la vista
-            correspondiente-->
+            <input v-model="email" class="input" type="email" placeholder="email">
+            <input v-model="password" class="input" type="password" placeholder="contraseña">
+            <router-link to="/manager/employees"
+                tag="button"
+                class="login-btn"
+                @click.native="sendCredentials">
+                Entrar
+                </router-link>
+            <!-- Redirigir a la vista correspondiente... en el then? y refresh form data-->
         </div>
     </div>
 </template>
 
 <script>
+
+import axios from 'axios';
+
 export default {
 
+  data() {
+    return {
+      email: '',
+      password: '',
+    };
+  },
+  methods: {
+    sendCredentials() {
+      axios.post('http://localhost:3000/auth', {
+        email: this.email,
+        password: this.password,
+      })
+        .then((response) => { console.log(response); })
+        .catch((error) => { console.log(error); });
+    },
+  },
 };
+
 </script>
 
 <style lang="scss">

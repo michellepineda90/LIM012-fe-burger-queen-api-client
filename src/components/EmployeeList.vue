@@ -54,6 +54,7 @@ export default {
             h3 {
                 font-family: Livvic, Helvetica, Arial, sans-serif;
                 font-size: 25px;
+                width: 10%;
             }
 
             .edit-employee-btn, .delete-employee-btn {

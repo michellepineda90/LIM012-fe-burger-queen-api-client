@@ -1,8 +1,8 @@
 <template>
     <div class="employees-list">
-        <div class="each-employee">
-            <h3>Name</h3>
-            <h3>Role</h3>
+        <div v-for="item in info" :key="item.id" class="each-employee">
+            <h3 v-bind:firstName="item.firstName"> {{ item.firstName }} </h3>
+            <h3> {{ item.role }} </h3>
             <button class="edit-employee-btn"></button>
             <button class="delete-employee-btn"></button>
         </div>
@@ -10,8 +10,22 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'listEmployees',
+  data() {
+    return {
+      info: [],
+    };
+  },
+  created() {
+    axios
+      .get('http://localhost:3000/users')
+      .then((result) => {
+        this.info = result.data;
+      });
+  },
 };
 </script>
 
@@ -38,6 +52,7 @@ export default {
             box-sizing: border-box;
 
             h3 {
+                font-family: Livvic, Helvetica, Arial, sans-serif;
                 font-size: 25px;
             }
 

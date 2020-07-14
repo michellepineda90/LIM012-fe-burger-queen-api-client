@@ -26,6 +26,7 @@ export default {
         background-color: #00C7D4;
 
         h2 {
+            font-family: Livvic, Helvetica, Arial, sans-serif;
             font-size: 28px;
             font-weight: 500;
         }

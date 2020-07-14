@@ -112,7 +112,7 @@ export default {
             height: 65px;
             outline: none;
             cursor: pointer;
-  // @include background-img(transparent,'../assets/btn-new-employee.svg', contain, none, 50%);
+            @include background-img(transparent,'../assets/btn-new-employee.svg', contain, none, 50%);
         }
     }
 

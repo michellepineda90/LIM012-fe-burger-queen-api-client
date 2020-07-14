@@ -22,11 +22,17 @@
         </div>
         <div class="buttons">
             <router-link to="" tag="button"
-            class="btn-manager"
-            @click="currentView = !currentView"
-            :class="{current: currentView}"
-            >Trabajadores</router-link>
-            <router-link to="" tag="button" class="btn-manager">Productos</router-link>
+              class="btn-manager"
+              @click.native="currentView = !currentView"
+              :class="toggleInactive"
+              >Trabajadores
+            </router-link>
+            <router-link to="" tag="button"
+              class="btn-manager"
+              @click.native="inactiveView = !inactiveView"
+              :class="toggleActive"
+              >Productos
+            </router-link>
         </div>
     </div>
 </template>
@@ -41,13 +47,27 @@ export default {
     return {
       modal: false,
       currentView: true,
+      inactiveView: false,
     };
   },
   components: {
     navComponent,
     EmployeeList,
   },
+  computed: {
+    toggleActive() {
+      return {
+        current: this.inactiveView,
+      };
+    },
+    toggleInactive() {
+      return {
+        current: this.currentView,
+      };
+    },
+  },
 };
+
 </script>
 
 <style lang="scss">

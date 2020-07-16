@@ -8,7 +8,7 @@
             <h3>Agregar trabajador</h3>
             <button class="btn-new-employee" @click="modal=true"></button>
         </div>
-        <ModalEmployee v-if="modal" @close="modal=false"/>
+        <ModalEmployee v-if="modal" @close="modal=false" button="Agregar Trabajador" />
         <div class="buttons">
             <router-link to="" tag="button" class="btn-manager employees">Trabajadores</router-link>
             <router-link to="" tag="button" class="btn-manager">Productos</router-link>

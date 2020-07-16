@@ -3,19 +3,29 @@
         <div v-for="item in info" :key="item.id" class="each-employee">
             <h3> {{ item.firstName }} </h3>
             <h3> {{ item.role }} </h3>
-            <button @click="editEmployee" class="edit-employee-btn"></button>
-            <button class="delete-employee-btn"></button>
+            <button @click="modal=true" class="edit-employee-btn"></button>
+            <modal-employee v-if="modal" @close="modal=false" button="Guardar cambios"/>
+            <button  @click="confirmation=true" class="delete-employee-btn"></button>
+            <confirmation-modal v-if="confirmation" @close="confirmation=false" />
         </div>
     </div>
 </template>
 
 <script>
 
+import ModalEmployee from './ModalEmployee.vue';
+import ConfirmationModal from './ConfirmationModal.vue';
+
 export default {
   name: 'EmployeeList',
+  components: {
+    ModalEmployee,
+    ConfirmationModal,
+  },
   data() {
     return {
-
+      modal: false,
+      confirmation: false,
     };
   },
   computed: {
@@ -25,11 +35,6 @@ export default {
   },
   created() {
     this.$store.dispatch('getEmployees');
-  },
-  methods: {
-    editEmployee() {
-
-    },
   },
 };
 </script>

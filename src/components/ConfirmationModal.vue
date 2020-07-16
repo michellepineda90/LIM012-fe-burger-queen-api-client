@@ -1,50 +1,22 @@
 <template>
     <div class="modal">
       <div class="modal-employee">
-          <h2>Nombre</h2>
-          <input type="text" v-model="user">
-          <h2>Correo electrónico</h2>
-          <input type="text" v-model="email">
-          <h2>Puesto</h2>
-          <input type="text" v-model="role">
-          <button class="btn-close-modal" @click="$emit('close')"></button>
-          <button class="submit-modal" @click="addEmployee">{{ button }}</button>
-          <!-- también tenemos que pasarle la funcion y no dejar addEmployee fijo -->
+        <h2>¿Estás seguro que deseas realizar esta acción?</h2>
+        <button class="btn-close-modal" @click="$emit('close')"></button>
+        <div class="button-enclosure">
+          <button class="accept">Sí</button>
+          <button class="decline">No</button>
+        </div>
       </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
-  props: {
-    button: String,
-  },
-  data() {
-    return {
-      user: '',
-      email: '',
-      role: '',
-    };
-  },
-  methods: {
-    addEmployee() {
-      axios({
-        method: 'post',
-        url: 'http://localhost:3000/users',
-        data: {
-          firstName: this.user,
-          email: this.email,
-          role: this.role,
-        },
-      })
-        .then(() => {
-          this.$store.dispatch('getEmployees');
-        });
-    },
-  },
+
 };
+
 </script>
 
 <style lang="scss">
@@ -69,7 +41,7 @@ export default {
             position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-evenly;
             width: 480px;
             height: 580px;
             background-color: white;
@@ -77,15 +49,7 @@ export default {
             padding: 40px;
 
             h2 {
-                text-align: left;
-            }
-
-            input {
-                width: 300px;
-                height: 45px;
-                border-radius: 10px;
-                border-style: none;
-                border: 1px solid black;
+                text-align: center;
             }
 
             .btn-close-modal {
@@ -99,17 +63,24 @@ export default {
                 @include background-img(transparent,'../assets/btn-exit.svg', contain, none, 50%);
             }
 
-            .submit-modal {
-                width: 330px;
+            .button-enclosure {
+              display: flex;
+              flex-direction: row;
+              justify-content: space-around;
+
+              .accept, .decline {
+                width: 150px;
                 height: 60px;
                 align-self: center;
                 border-radius: 10px;
-                background-color: #00C7D4;
+                background-color: #000;
+                color: #fff;
                 border-style: none;
                 font-size: 28px;
                 font-weight: 600;
                 outline: none;
-              cursor: pointer;
+                cursor: pointer;
+              }
             }
         }
     }

@@ -3,7 +3,7 @@
         <div v-for="item in info" :key="item.id" class="each-employee">
             <h3 v-bind:firstName="item.firstName"> {{ item.firstName }} </h3>
             <h3> {{ item.role }} </h3>
-            <button class="edit-employee-btn"></button>
+            <button @click="editEmployee" class="edit-employee-btn"></button>
             <button class="delete-employee-btn"></button>
         </div>
     </div>
@@ -25,6 +25,11 @@ export default {
   },
   created() {
     this.$store.dispatch('getEmployees');
+  },
+  methods: {
+    editEmployee() {
+
+    },
   },
 };
 </script>

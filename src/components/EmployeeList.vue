@@ -1,7 +1,7 @@
 <template>
     <div class="employees-list">
         <div v-for="item in info" :key="item.id" class="each-employee">
-            <h3 v-bind:firstName="item.firstName"> {{ item.firstName }} </h3>
+            <h3> {{ item.firstName }} </h3>
             <h3> {{ item.role }} </h3>
             <button @click="editEmployee" class="edit-employee-btn"></button>
             <button class="delete-employee-btn"></button>

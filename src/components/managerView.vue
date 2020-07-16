@@ -1,6 +1,6 @@
 <template>
     <div class="manager">
-        <navComponent fullname="manager"/>
+      <NavComponent fullname="manager"/>
         <router-link to="" tag="button" class="btn-prev"></router-link>
         <EmployeeList />
         <router-link to="" tag="button" class="btn-next"></router-link>
@@ -10,14 +10,14 @@
         </div>
         <ModalEmployee v-if="modal" @close="modal=false"/>
         <div class="buttons">
-            <router-link to="" tag="button" class="btn-manager">Trabajadores</router-link>
+            <router-link to="" tag="button" class="btn-manager employees">Trabajadores</router-link>
             <router-link to="" tag="button" class="btn-manager">Productos</router-link>
         </div>
     </div>
 </template>
 
 <script>
-import navComponent from './navComponent.vue';
+import NavComponent from './NavComponent.vue';
 import EmployeeList from './EmployeeList.vue';
 import ModalEmployee from './ModalEmployee.vue';
 
@@ -29,7 +29,7 @@ export default {
     };
   },
   components: {
-    navComponent,
+    NavComponent,
     EmployeeList,
     ModalEmployee,
   },
@@ -127,7 +127,7 @@ export default {
             border: 1px solid black;
         }
 
-        .current {
+        .employees {
             background-color: #00C7D4;
             border: none;
         }

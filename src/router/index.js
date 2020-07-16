@@ -21,7 +21,7 @@ const routes = [
   {
     path: '/manager/employees',
     name: 'Manager',
-    component: () => import(/* webpackChunkName: "about" */ '../components/managerView'),
+    component: () => import(/* webpackChunkName: "about" */ '../components/ManagerView'),
   },
 ];
 

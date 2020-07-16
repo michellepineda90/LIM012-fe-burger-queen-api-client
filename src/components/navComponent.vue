@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'navComponent',
+  name: 'NavComponent',
   props: {
     fullname: String,
   },

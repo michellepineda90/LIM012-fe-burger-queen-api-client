@@ -9,7 +9,7 @@
           <input type="text" v-model="role">
           <button class="btn-close-modal" @click="$emit('close')"></button>
           <button class="submit-modal" @click="addEmployee">{{ button }}</button>
-          <!-- también tenemos que pasarle la funcion y no dejar addEmployee fijo -->
+          <!--TODO: también tenemos que cambiar la funcion y no dejar addEmployee fijo -->
       </div>
     </div>
 </template>
@@ -86,6 +86,9 @@ export default {
                 border-radius: 10px;
                 border-style: none;
                 border: 1px solid black;
+                outline: none;
+                font-size: 22px;
+                padding-left: 5px;
             }
 
             .btn-close-modal {

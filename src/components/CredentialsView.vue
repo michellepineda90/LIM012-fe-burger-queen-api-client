@@ -1,20 +1,21 @@
 <template>
-    <div class="credentials">
-        <router-link to="/" tag="button" class="back-btn"></router-link>
-        <div class="login-form">
-            <img src="../assets/logo-2.png" alt="">
-            <h2>Inicia sesión</h2>
-            <input v-model="email" class="input" type="email" placeholder="email">
-            <input v-model="password" class="input" type="password" placeholder="contraseña">
-            <router-link to="/manager/employees"
-                tag="button"
-                class="login-btn"
-                @click.native="sendCredentials">
-                Entrar
-                </router-link>
-            <!-- Redirigir a la vista correspondiente... en el then? y refresh form data-->
-        </div>
+  <div class="credentials">
+    <router-link to="/" tag="button" class="back-btn"></router-link>
+    <div class="login-form">
+      <img src="../assets/logo-2.png" alt="">
+      <h2>Inicia sesión</h2>
+      <input v-model="email" class="input" type="email" placeholder="email">
+      <input v-model="password" class="input" type="password" placeholder="contraseña">
+      <router-link to="/manager/employees" tag="button" class="login-btn" @click.native="sendCredentials">
+        Entrar
+      </router-link>
+      <!-- TODO:
+      1. User validation... en Vuex? en las mutations?
+      2. Redirigir a la vista correspondiente dependiendo del rol de usuario... en el then?
+      3. Refresh form data
+      -->
     </div>
+  </div>
 </template>
 
 <script>

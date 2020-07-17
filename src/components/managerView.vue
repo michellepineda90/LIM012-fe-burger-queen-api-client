@@ -1,6 +1,6 @@
 <template>
   <div class="manager">
-    <NavComponent fullname="manager"/>
+    <nav-component fullname="manager"/>
     <router-link to="" tag="button" class="btn-prev"></router-link>
     <EmployeeList />
     <router-link to="" tag="button" class="btn-next"></router-link>

@@ -1,11 +1,11 @@
 <template>
     <div class="employees-list">
-      <div v-for="item in info" :key="item.id" class="each-employee">
+      <div v-for="(item, index) in info" :key="index" class="each-employee">
           <h3> {{ item.firstName }} </h3>
           <h3> {{ item.role }} </h3>
           <button @click="modal=true" class="edit-employee-btn"></button>
-          <button  @click="confirmation=true" class="delete-employee-btn"></button>
-          <confirmation-modal v-bind:id="item.id" v-if="confirmation" @close="confirmation=false" />
+          <button  @click="showModal(index)" class="delete-employee-btn"></button>
+          <confirmation-modal :ref="'modal_' + index" @close="confirmation=false" />
       </div>
       <modal-employee v-if="modal" @close="modal=false" button="Guardar cambios"/>
     </div>
@@ -35,6 +35,12 @@ export default {
   },
   created() {
     this.$store.dispatch('getEmployees');
+  },
+  methods: {
+    showModal(index) {
+      const modalId = `modal_${index}`;
+      this.$refs[modalId][0].show(index);
+    },
   },
 };
 </script>

@@ -5,9 +5,9 @@
           <h3> {{ item.role }} </h3>
           <button @click="modal=true" class="edit-employee-btn"></button>
           <button  @click="confirmation=true" class="delete-employee-btn"></button>
+          <confirmation-modal v-bind:id="item.id" v-if="confirmation" @close="confirmation=false" />
       </div>
       <modal-employee v-if="modal" @close="modal=false" button="Guardar cambios"/>
-      <confirmation-modal v-if="confirmation" @close="confirmation=false" />
     </div>
 </template>
 

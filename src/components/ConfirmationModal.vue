@@ -4,7 +4,7 @@
         <h2 class="conf-text">¿Estás seguro que deseas realizar esta acción?</h2>
         <button class="btn-close-modal" @click="close"></button>
         <div class="button-enclosure">
-          <button class="accept">Sí</button>
+          <button class="accept" @click="eliminar(id)">Sí</button>
           <button class="decline" @click="close">No</button>
         </div>
       </div>
@@ -19,6 +19,7 @@ export default {
       visible: false,
     };
   },
+  props: ['eliminar', 'id'],
   methods: {
     // eslint-disable-next-line no-unused-vars
     show(index) {

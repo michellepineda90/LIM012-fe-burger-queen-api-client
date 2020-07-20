@@ -1,12 +1,6 @@
 {
   "users": [
     {
-      "firstName": "Michelle",
-      "email": "michelle@gmail.com",
-      "role": "Mesera",
-      "id": 2
-    },
-    {
       "firstName": "Alice",
       "email": "alice@gmail.com",
       "role": "mesera",
@@ -65,6 +59,11 @@
       "email": "",
       "password": "",
       "id": 7
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 8
     }
   ]
 }

@@ -3,8 +3,14 @@
     {
       "firstName": "Alice",
       "email": "alice@gmail.com",
-      "role": "mesera",
-      "id": 3
+      "role": "Mesera",
+      "id": 1
+    },
+    {
+      "firstName": "Michelle",
+      "email": "michelle@gmail.com",
+      "role": "Mesera",
+      "id": 2
     }
   ],
   "companies": [
@@ -64,6 +70,11 @@
       "email": "",
       "password": "",
       "id": 8
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 9
     }
   ]
 }

@@ -24,7 +24,7 @@ export default new Vuex.Store({
     },
     deleteEmployee({ dispatch }, payload) {
       axios
-        .delete(`http://localhost:3000/users:${payload}`)
+        .delete(`http://localhost:3000/users/${payload}`)
         .then(() => {
           dispatch('getEmployees');
         });

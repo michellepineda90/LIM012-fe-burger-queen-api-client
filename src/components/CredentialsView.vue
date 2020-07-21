@@ -41,6 +41,9 @@ export default {
         },
       })
         .then((response) => { console.log(response); });
+        // esto debería enviarme un token y eso lo puedo guardar en el estado o localStorage o variable global
+        // para no perderlo si hago refresh
+        // en todas las llamadas posteriores lo uso como header en aquellos que nos piden como autenticación
     },
   },
 };

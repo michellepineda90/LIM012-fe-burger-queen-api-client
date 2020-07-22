@@ -6,7 +6,7 @@
       <h2>Inicia sesión</h2>
       <input v-model="email" class="input" type="email" placeholder="email">
       <input v-model="password" class="input" type="password" placeholder="contraseña">
-      <router-link to="/manager/employees" tag="button" class="login-btn" @click.native="sendCredentials">
+      <router-link to="/manager/employees" tag="button" class="login-btn" >
         Entrar
       </router-link>
       <!-- TODO:
@@ -20,7 +20,7 @@
 
 <script>
 
-import axios from 'axios';
+// import axios from 'axios';
 
 export default {
 
@@ -30,25 +30,26 @@ export default {
       password: '',
     };
   },
-  methods: {
-    sendCredentials() {
-      axios({
-        method: 'post',
-        url: 'http://localhost:3000/auth',
-        data: {
-          email: this.email,
-          password: this.password,
-        },
-        // headers: {
-        //   Authorization: 'Bearer {token}',
-        // },
-      })
-        .then((response) => { console.log(response); });
-      // esto debería enviarme un token y eso lo puedo guardar en el estado o localStorage o variable global
-      // para no perderlo si hago refresh
-      // en todas las llamadas posteriores lo uso como header en aquellos que nos piden como autenticación
-    },
-  },
+  // methods: {
+  // @click.native="sendCredentials"
+  //   sendCredentials() {
+  //     axios({
+  //       method: 'post',
+  //       url: 'http://localhost:3000/auth',
+  //       data: {
+  //         email: this.email,
+  //         password: this.password,
+  //       },
+  //       // headers: {
+  //       //   Authorization: 'Bearer {token}',
+  //       // },
+  //     })
+  //       .then((response) => { console.log(response); });
+  //     // esto debería enviarme un token y eso lo puedo guardar en el estado o localStorage o variable global
+  //     // para no perderlo si hago refresh
+  //     // en todas las llamadas posteriores lo uso como header en aquellos que nos piden como autenticación
+  //   },
+  // },
 };
 
 </script>

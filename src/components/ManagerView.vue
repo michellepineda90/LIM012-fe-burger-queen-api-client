@@ -2,7 +2,7 @@
   <div class="manager">
     <nav-component fullname="manager"/>
     <router-link to="" tag="button" class="btn-prev"></router-link>
-    <EmployeeList />
+    <EmployeeList :users="users"/>
     <router-link to="" tag="button" class="btn-next"></router-link>
     <div class="new-employee">
         <h3>Agregar trabajador</h3>
@@ -30,6 +30,7 @@ export default {
   data() {
     return {
       modal: false,
+      users: [],
     };
   },
   components: {
@@ -37,9 +38,18 @@ export default {
     EmployeeList,
     ModalEmployee,
   },
-  methods: {
-
-  },
+  mounted () {
+    const token = 'qwerryuipuq';
+    fetch('http://localhost:3000/users', {
+      method: 'GET',
+      headers:{
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+        }
+      })
+      .then(response => (response.json()))
+      .then(response => (this.users = response))
+  }
 };
 
 </script>

@@ -1,15 +1,9 @@
 {
   "users": [
     {
-      "firstName": "Alice",
+      "firstName": "alice",
       "email": "alice@gmail.com",
-      "role": "Mesera",
-      "id": 1
-    },
-    {
-      "firstName": "Michelle",
-      "email": "michelle@gmail.com",
-      "role": "Mesera",
+      "role": "chef",
       "id": 2
     }
   ],
@@ -75,6 +69,26 @@
       "email": "",
       "password": "",
       "id": 9
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 10
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 11
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 12
+    },
+    {
+      "email": "",
+      "password": "",
+      "id": 13
     }
   ]
 }

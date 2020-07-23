@@ -1,48 +1,34 @@
 <template>
     <div class="modal">
       <div class="modal-employee">
-          <h2>Nombre</h2>
-          <input type="text" v-model="user">
-          <h2>Correo electrónico</h2>
-          <input type="text" v-model="email">
+          <h2>Email</h2>
+          <input type="email" v-model="email">
+          <h2>Password</h2>
+          <input type="password" v-model="password">
           <h2>Puesto</h2>
-          <input type="text" v-model="role">
+          <select v-model="role">
+            <option value="true">Administrador</option>
+            <option value="false">Usuario</option>
+          </select>
           <button class="btn-close-modal" @click="$emit('close')"></button>
-          <button class="submit-modal" @click="addEmployee">{{ button }}</button>
+          <button class="submit-modal" @click="addFunction">{{ button }}</button>
           <!--TODO: también tenemos que cambiar la funcion y no dejar addEmployee fijo -->
       </div>
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   props: {
     button: String,
+    password: String,
+    email: String,
+    role: String,
+    addFunction: Function,
   },
   data() {
-    return {
-      user: '',
-      email: '',
-      role: '',
-    };
   },
   methods: {
-    addEmployee() {
-      axios({
-        method: 'post',
-        url: 'http://localhost:3000/users',
-        data: {
-          firstName: this.user,
-          email: this.email,
-          role: this.role,
-        },
-      })
-        .then(() => {
-          this.$store.dispatch('getEmployees');
-        });
-    },
   },
 };
 </script>

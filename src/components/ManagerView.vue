@@ -8,7 +8,8 @@
         <h3>Agregar trabajador</h3>
         <button class="btn-new-employee" @click="modal=true"></button>
     </div>
-    <modal-employee v-if="modal" @close="modal=false" button="Agregar Trabajador" />
+    <modal-employee v-if="modal" @close="modal=false" :password="password" :email="email" :role="role"
+    :addFunction="handleAddEmployee" button="Agregar Trabajador" />
     <div class="buttons">
         <router-link to="" tag="button" class="btn-manager employees">Trabajadores</router-link>
         <router-link to="" tag="button" class="btn-manager">Productos</router-link>
@@ -21,9 +22,13 @@
 </template>
 
 <script>
+import { getEmployees, addEmployee } from '../controllers/users.js'
+
 import NavComponent from './NavComponent.vue';
 import EmployeeList from './EmployeeList.vue';
 import ModalEmployee from './ModalEmployee.vue';
+
+const token = 'qwerryuipuq';
 
 export default {
   name: 'managerView',
@@ -31,6 +36,9 @@ export default {
     return {
       modal: false,
       users: [],
+      password: '',
+      email: '',
+      role: '',
     };
   },
   components: {
@@ -39,16 +47,23 @@ export default {
     ModalEmployee,
   },
   mounted () {
-    const token = 'qwerryuipuq';
-    fetch('http://localhost:3000/users', {
-      method: 'GET',
-      headers:{
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`,
-        }
-      })
-      .then(response => (response.json()))
+    getEmployees(token)
       .then(response => (this.users = response))
+  },
+  methods: {
+    handleAddEmployee: () => {
+      const objEmployee = {
+        // Borrar luego el id
+        _id: Math.random()*1000,
+        email: this.email,
+        password: this.password,
+        roles: {
+          admin: this.role === "true"
+        }
+      }
+      addEmployee(token, objEmployee)
+        .then(response => (this.users = [...this.users, response]))
+    }
   }
 };
 

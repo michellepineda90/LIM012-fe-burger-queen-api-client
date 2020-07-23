@@ -5,7 +5,7 @@
           <h3> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
           <button @click="modal=true" class="edit-employee-btn"></button>
           <button  @click="showModal(index)" class="delete-employee-btn"></button>
-          <confirmation-modal :id="user._id" :eliminar="eliminar" :ref="'modal_' + index"
+          <confirmation-modal :id="user._id" :ref="'modal_' + index"
           @close="confirmation=false" />
       </div>
       <modal-employee v-if="modal" @close="modal=false" button="Guardar cambios"/>

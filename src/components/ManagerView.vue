@@ -2,14 +2,14 @@
   <div class="manager">
     <nav-component fullname="manager"/>
     <router-link to="" tag="button" class="btn-prev"></router-link>
-    <EmployeeList :users="users"/>
+    <EmployeeList :users="users" @click="getUserData"/>
     <router-link to="" tag="button" class="btn-next"></router-link>
     <div class="new-employee">
         <h3>Agregar trabajador</h3>
         <button class="btn-new-employee" @click="modal=true"></button>
     </div>
-    <modal-employee v-if="modal" @close="modal=false" :password="password" :email="email" :role="role"
-    :addFunction="handleAddEmployee" button="Agregar Trabajador" />
+    <modal-employee v-if="modal" @close="modal=false" @click="handleAddEmployee" 
+    :user="user"  button="Agregar Trabajador" />
     <div class="buttons">
         <router-link to="" tag="button" class="btn-manager employees">Trabajadores</router-link>
         <router-link to="" tag="button" class="btn-manager">Productos</router-link>
@@ -36,9 +36,7 @@ export default {
     return {
       modal: false,
       users: [],
-      password: '',
-      email: '',
-      role: '',
+      user: {},
     };
   },
   components: {
@@ -51,18 +49,22 @@ export default {
       .then(response => (this.users = response))
   },
   methods: {
-    handleAddEmployee: () => {
+    handleAddEmployee(obj) {
       const objEmployee = {
         // Borrar luego el id
         _id: Math.random()*1000,
-        email: this.email,
-        password: this.password,
+        email: obj.email,
+        password: obj.password,
         roles: {
-          admin: this.role === "true"
+          admin: obj.role === "true"
         }
       }
       addEmployee(token, objEmployee)
         .then(response => (this.users = [...this.users, response]))
+    },
+    getUserData(user){
+      console.log(user.email);
+      // this.user = user;
     }
   }
 };

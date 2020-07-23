@@ -3,8 +3,8 @@
       <div v-for="(user, index) in users" :key="index" class="each-employee">
           <h3> {{ user.email }} </h3>
           <h3> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
-          <button @click="modal=true" class="edit-employee-btn"></button>
-          <button  @click="showModal(index)" class="delete-employee-btn"></button>
+          <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
+          <button class="delete-employee-btn"></button>
           <confirmation-modal :id="user._id" :ref="'modal_' + index"
           @close="confirmation=false" />
       </div>
@@ -13,8 +13,6 @@
 </template>
 
 <script>
-// import axios from 'axios';
-
 import ModalEmployee from './ModalEmployee.vue';
 import ConfirmationModal from './ConfirmationModal.vue';
 
@@ -29,27 +27,27 @@ export default {
   },
   data() {
     return {
+      password: '',
+      email: '',
+      role: '',
       modal: false,
       confirmation: false,
     };
   },
-  // computed: {
-  //   info() {
-  //     return this.$store.state.employees;
-  //   },
-  // },
-  // created() {
-  //   this.$store.dispatch('getEmployees');
-  // },
-  // methods: {
-  //   showModal(index) {
-  //     const modalId = `modal_${index}`;
-  //     this.$refs[modalId][0].show(index);
-  //   },
-  //   eliminar(id) {
-  //     this.$store.dispatch('deleteEmployee', id);
-  //   },
-  // },
+  methods: {
+    showEditModal(index) {
+      this.modal = true;
+      const userToEdit = this.users.filter(function(user) {
+        return index === user._id;
+      });
+      this.$emit('click', userToEdit[0]);
+      // const modalId = `modal_${index}`;
+      // this.$refs[modalId][0].show(index);
+    },
+    // eliminar(id) {
+    //   this.$store.dispatch('deleteEmployee', id);
+    // },
+  },
 };
 
 </script>

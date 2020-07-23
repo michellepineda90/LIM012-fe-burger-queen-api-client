@@ -12,24 +12,38 @@
           </select>
           <button class="btn-close-modal" @click="$emit('close')"></button>
           <button class="submit-modal" @click="addFunction">{{ button }}</button>
-          <!--TODO: también tenemos que cambiar la funcion y no dejar addEmployee fijo -->
       </div>
     </div>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      password: '',
+      email: '',
+      role: '',
+    };
+  },
   props: {
     button: String,
-    password: String,
-    email: String,
-    role: String,
-    addFunction: Function,
+    user: Object,
   },
-  data() {
+  mounted () {
+    console.log(this.user);
+    if (this.button === 'Guardar cambios') {
+      this.email = this.user.email;
+    } 
   },
   methods: {
-  },
+    addFunction() {
+      this.$emit('click', {
+        password: this.password,
+        email: this.email,
+        role: this.role,
+      })
+    },
+  }
 };
 </script>
 

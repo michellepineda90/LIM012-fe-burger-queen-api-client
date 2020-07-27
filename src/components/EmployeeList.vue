@@ -7,7 +7,7 @@
           <button class="delete-employee-btn"></button>
           <confirmation-modal :id="user._id" :ref="'modal_' + index" @close="confirmation=false" />
       </div>
-      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" :editPassword="password" button="Guardar cambios"/>
+      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"/>
     </div>
 </template>
 
@@ -41,7 +41,6 @@ export default {
       });
       this.$emit('click', userToEdit[0]);
       this.email=userToEdit[0].email;
-      this.password=userToEdit[0].password;
       // const modalId = `modal_${index}`;
       // this.$refs[modalId][0].show(index);
     },

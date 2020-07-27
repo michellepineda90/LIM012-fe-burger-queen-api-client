@@ -27,12 +27,14 @@ export default {
   },
   props: {
     button: String,
-    user: Object,
+    editEmail: String,
+    editPassword: String,
   },
   mounted () {
-    console.log(this.user);
+    // console.log(this.user);
     if (this.button === 'Guardar cambios') {
-      this.email = this.user.email;
+      this.password = this.editPassword;
+      this.email = this.editEmail;
     } 
   },
   methods: {

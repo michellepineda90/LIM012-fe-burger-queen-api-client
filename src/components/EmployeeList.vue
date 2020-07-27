@@ -5,10 +5,9 @@
           <h3> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
           <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
           <button class="delete-employee-btn"></button>
-          <confirmation-modal :id="user._id" :ref="'modal_' + index"
-          @close="confirmation=false" />
+          <confirmation-modal :id="user._id" :ref="'modal_' + index" @close="confirmation=false" />
       </div>
-      <modal-employee v-if="modal" @close="modal=false" button="Guardar cambios"/>
+      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" :editPassword="password" button="Guardar cambios"/>
     </div>
 </template>
 
@@ -41,6 +40,8 @@ export default {
         return index === user._id;
       });
       this.$emit('click', userToEdit[0]);
+      this.email=userToEdit[0].email;
+      this.password=userToEdit[0].password;
       // const modalId = `modal_${index}`;
       // this.$refs[modalId][0].show(index);
     },

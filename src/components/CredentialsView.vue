@@ -6,50 +6,41 @@
       <h2>Inicia sesión</h2>
       <input v-model="email" class="input" type="email" placeholder="email">
       <input v-model="password" class="input" type="password" placeholder="contraseña">
-      <router-link to="/manager/employees" tag="button" class="login-btn" >
+      <router-link to="/manager/employees" tag="button" class="login-btn" 
+      @click.native="handleSendForm" >
         Entrar
       </router-link>
       <!-- TODO:
-      1. User validation... en Vuex? en las mutations?
+      1. User input validation...
       2. Redirigir a la vista correspondiente dependiendo del rol de usuario... en el then?
-      3. Refresh form data
       -->
     </div>
   </div>
 </template>
 
 <script>
-
-// import axios from 'axios';
+import auth from '../controllers/auth';
 
 export default {
-
   data() {
     return {
       email: '',
       password: '',
     };
   },
-  // methods: {
-  // @click.native="sendCredentials"
-  //   sendCredentials() {
-  //     axios({
-  //       method: 'post',
-  //       url: 'http://localhost:3000/auth',
-  //       data: {
-  //         email: this.email,
-  //         password: this.password,
-  //       },
-  //       // headers: {
-  //       //   Authorization: 'Bearer {token}',
-  //       // },
-  //     })
-  //       .then((response) => { console.log(response); });
-  //     // esto debería enviarme un token y eso lo puedo guardar en el estado o localStorage o variable global
-  //     // para no perderlo si hago refresh
-  //     // en todas las llamadas posteriores lo uso como header en aquellos que nos piden como autenticación
-  //   },
-  // },
+  methods: {
+    handleSendForm(e) {
+      e.preventDefault();
+      const userCredentials = {
+        email: this.email,
+        password: this.password};
+        console.log(userCredentials);
+      auth(userCredentials)
+        .then((resp)=> {
+          console.log(userCredentials, resp)
+        })
+    },
+  },
 };
 
 </script>

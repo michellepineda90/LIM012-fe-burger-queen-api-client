@@ -20,3 +20,27 @@ export const addEmployee = (token, data) => {
     })
     .then(response => (response.json()))
 }
+
+export const editEmployee = (token, data) => {
+  return fetch('http://localhost:3000/users', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      }
+  })
+  .then(response => (response.json()))
+}
+
+export const deleteEmployee = (token, data) => {
+  return fetch('http://localhost:3000/users', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+    headers:{
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+      }
+  })
+  .then(response => (response.json()))
+}

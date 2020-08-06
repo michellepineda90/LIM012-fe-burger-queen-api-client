@@ -1,19 +1,22 @@
 <template>
     <div class="employees-list">
       <div v-for="(user, index) in users" :key="index" class="each-employee">
-          <h3> {{ user.email }} </h3>
-          <h3> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
-          <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
-          <button class="delete-employee-btn"></button>
-          <confirmation-modal :id="user._id" :ref="'modal_' + index" @close="confirmation=false" />
+        <h3> {{ user.email }} </h3>
+        <h3 class="employee-role"> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
+        <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
+        <button @click="showConfirmationModal" class="delete-employee-btn"></button>
+        <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
+        @close="confirmation=false" />
       </div>
-      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"/>
+      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"
+      @click="editEmployee"/>
     </div>
 </template>
 
 <script>
-import ModalEmployee from './ModalEmployee.vue';
+
 import ConfirmationModal from './ConfirmationModal.vue';
+import ModalEmployee from './ModalEmployee.vue';
 
 export default {
   name: 'EmployeeList',
@@ -41,9 +44,12 @@ export default {
       });
       this.$emit('click', userToEdit[0]);
       this.email=userToEdit[0].email;
-      // const modalId = `modal_${index}`;
-      // this.$refs[modalId][0].show(index);
     },
+    showConfirmationModal() {
+      console.log('i clicked');
+      this.confirmation = true;
+      console.log(this.confirmation);
+    }
     // eliminar(id) {
     //   this.$store.dispatch('deleteEmployee', id);
     // },
@@ -77,6 +83,10 @@ export default {
           font-family: Livvic, Helvetica, Arial, sans-serif;
           font-size: 25px;
           width: 10%;
+        }
+
+        .employee-role {
+          margin-left: 80px;
         }
 
         .edit-employee-btn, .delete-employee-btn {

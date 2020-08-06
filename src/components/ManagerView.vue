@@ -60,6 +60,7 @@ export default {
       }
       addEmployee(token, objEmployee)
         .then(response => (this.users = [...this.users, response]))
+        .then(this.modal = false)
     },
     getUserData(user){
       console.log(user.email);

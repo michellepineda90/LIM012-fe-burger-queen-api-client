@@ -1,6 +1,5 @@
 <template>
   <div class="credentials">
-    <router-link to="/" tag="button" class="back-btn"></router-link>
     <div class="login-form">
       <img src="../assets/logo-2.png" alt="">
       <h2>Inicia sesión</h2>
@@ -12,7 +11,8 @@
       </router-link>
       <!-- TODO:
       1. User input validation...
-      2. Redirigir a la vista correspondiente dependiendo del rol de usuario... en el then?
+      2. Redirigir a la vista correspondiente dependiendo del rol de usuario aquí y si ya tiene token 
+      en el router
       -->
     </div>
   </div>
@@ -33,11 +33,15 @@ export default {
       e.preventDefault();
       const userCredentials = {
         email: this.email,
-        password: this.password};
-        console.log(userCredentials);
+        password: this.password
+        };
       auth(userCredentials)
         .then((resp)=> {
-          console.log(userCredentials, resp)
+          console.log(userCredentials, resp);
+          if (resp.token){
+            window.localStorage.setItem('token', resp.token);
+            this.$router.push('/manager/employees');
+          }
         })
     },
   },

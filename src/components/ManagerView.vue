@@ -64,7 +64,6 @@ export default {
     },
     getUserData(user){
       console.log(user.email);
-      // this.user = user;
     }
   }
 };

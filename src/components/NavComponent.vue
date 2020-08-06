@@ -1,7 +1,8 @@
 <template>
     <div class="nav-style">
         <H2>¡Bienvenido {{ fullname }}!</H2>
-        <router-link to="/" tag="h2" class="sign-out">Cerrar sesión</router-link>
+        <router-link to="/" tag="h2" class="sign-out" 
+        @click="logout">Cerrar sesión</router-link>
     </div>
 </template>
 
@@ -11,6 +12,11 @@ export default {
   props: {
     fullname: String,
   },
+  methods: {
+      logout(){
+        window.localStorage.removeItem('token');
+      }
+  }
 };
 </script>
 

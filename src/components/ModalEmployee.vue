@@ -7,8 +7,8 @@
           <input type="password" v-model="password">
           <h2>Puesto</h2>
           <select v-model="role">
-            <option value="true">Administrador</option>
-            <option value="false">Usuario</option>
+            <option>Administrador</option>
+            <option>Usuario</option>
           </select>
           <button class="btn-close-modal" @click="$emit('close')"></button>
           <button class="submit-modal" @click="addFunction">{{ button }}</button>
@@ -30,7 +30,6 @@ export default {
     editEmail: String,
   },
   mounted () {
-    // console.log(this.user);
     if (this.button === 'Guardar cambios') {
       this.email = this.editEmail;
     } 
@@ -41,7 +40,8 @@ export default {
         password: this.password,
         email: this.email,
         role: this.role,
-      })
+      });
+      console.log(this.role);
     },
   }
 };

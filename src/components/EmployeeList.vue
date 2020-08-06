@@ -2,14 +2,13 @@
     <div class="employees-list">
       <div v-for="(user, index) in users" :key="index" class="each-employee">
         <h3> {{ user.email }} </h3>
-        <h3 class="employee-role"> {{ user.role == 'true' ? 'Admin' : 'User' }} </h3>
+        <h3 class="employee-role"> {{ (user.role == 'Administrador') ? 'Admin' : 'User' }} </h3>
         <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
         <button @click="showConfirmationModal" class="delete-employee-btn"></button>
         <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
         @close="confirmation=false" />
       </div>
-      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"
-      @click="editEmployee"/>
+      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"/>
     </div>
 </template>
 
@@ -29,9 +28,6 @@ export default {
   },
   data() {
     return {
-      password: '',
-      email: '',
-      role: '',
       modal: false,
       confirmation: false,
     };
@@ -50,9 +46,6 @@ export default {
       this.confirmation = true;
       console.log(this.confirmation);
     }
-    // eliminar(id) {
-    //   this.$store.dispatch('deleteEmployee', id);
-    // },
   },
 };
 

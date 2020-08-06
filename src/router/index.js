@@ -9,11 +9,22 @@ const routes = [
     path: '/',
     name: 'Credentials',
     component: Credentials,
+    beforeEnter: (to, from, next) => {
+      if (window.localStorage.getItem('token') != ''){
+        next('/manager/employees')
+      }
+    }
   },
   {
     path: '/manager/employees',
     name: 'Manager',
     component: () => import(/* webpackChunkName: "about" */ '../components/ManagerView'),
+    beforeEnter: (to, from, next) => {
+      if (window.localStorage.getItem('token') != ''){
+        next()
+      }
+      next('/')
+    }
   },
 ];
 

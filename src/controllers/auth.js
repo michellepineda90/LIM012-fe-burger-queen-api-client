@@ -11,8 +11,8 @@ export default (data) => fetch(url, {
         case 200:
             return response.json();
         case 400:
-            throw new Error('You have not provided a valid email and or password');
+            return Error('You have not provided a valid email and or password');
         default:
             break;
     }
-})
+});

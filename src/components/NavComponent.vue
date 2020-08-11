@@ -1,8 +1,7 @@
 <template>
     <div class="nav-style">
-        <H2>¡Bienvenido {{ fullname }}!</H2>
-        <router-link to="/" tag="h2" class="sign-out" 
-        @click="logout">Cerrar sesión</router-link>
+        <h2>¡Bienvenido {{ fullname }}!</h2>
+        <router-link to="/" tag="h2" class="sign-out" @click.native="logout">Cerrar sesión</router-link>
     </div>
 </template>
 
@@ -13,8 +12,9 @@ export default {
     fullname: String,
   },
   methods: {
-      logout(){
+      logout() {
         window.localStorage.removeItem('token');
+        this.$router.push('/');
       }
   }
 };

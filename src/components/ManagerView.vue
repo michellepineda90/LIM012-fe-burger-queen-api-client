@@ -1,16 +1,20 @@
 <template>
   <div class="manager">
-    <nav-component fullname="manager"/>
+    <nav-component :fullname="userName"/>
     <router-link to="" tag="button" class="btn-prev"></router-link>
-    <EmployeeList :users="users" @click="getUserData"/>
+    <employee-list :users="users" @click="getUserData"/>
     <router-link to="" tag="button" class="btn-next"></router-link>
     <div class="new-employee">
         <h3>Agregar trabajador</h3>
         <button class="btn-new-employee" @click="modal=true"></button>
     </div>
-    <modal-employee v-if="modal" @close="modal=false" @click="handleAddEmployee" :user="user" button="Agregar Trabajador" />
+    <modal-employee 
+      v-if="modal" 
+      @close="modal=false" 
+      @click="handleAddEmployee" 
+      :user="user" button="Agregar Trabajador" />
     <div class="buttons">
-        <router-link to="" tag="button" class="btn-manager employees">Trabajadores</router-link>
+        <router-link to="/manager/employees" tag="button" class="btn-manager employees">Trabajadores</router-link>
         <router-link to="" tag="button" class="btn-manager">Productos</router-link>
     </div>
   </div>
@@ -28,9 +32,13 @@ import EmployeeList from './EmployeeList.vue';
 import ModalEmployee from './ModalEmployee.vue';
 
 const token = 'qwerryuipuq';
+// debería obtener el token del CredentialsView?
 
 export default {
   name: 'managerView',
+   props: {
+    userName: String,
+  },
   data() {
     return {
       modal: false,
@@ -45,25 +53,23 @@ export default {
   },
   mounted () {
     getEmployees(token)
-      .then(response => (this.users = response))
+      .then(response => (this.users = response));
   },
   methods: {
-    handleAddEmployee(obj) {
-      const objEmployee = {
+    handleAddEmployee(employee) {
+      const newEmployee = {
         // Borrar luego el id
-        _id: Math.random()*1000,
-        email: obj.email,
-        password: obj.password,
-        roles: {
-          admin: obj.role === "true"
-        }
-      }
-      addEmployee(token, objEmployee)
+        _id: Math.random() * 1000,
+        email: employee.email,
+        password: employee.password,
+        roles: employee.roles,
+      };
+      addEmployee(token, newEmployee)
         .then(response => (this.users = [...this.users, response]))
-        .then(this.modal = false)
+        .then(this.modal = false); 
     },
     getUserData(user){
-      console.log(user.email);
+      return user.email;
     }
   }
 };

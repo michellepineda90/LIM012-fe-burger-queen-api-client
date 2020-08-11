@@ -6,12 +6,12 @@
           <h2>Password</h2>
           <input type="password" v-model="password">
           <h2>Puesto</h2>
-          <select v-model="role">
-            <option>Administrador</option>
-            <option>Usuario</option>
+          <select v-model="roles">
+            <option :value="{ admin: true }">Administrador</option>
+            <option :value="{ admin: false }">Usuario</option>
           </select>
           <button class="btn-close-modal" @click="$emit('close')"></button>
-          <button class="submit-modal" @click="addFunction">{{ button }}</button>
+          <button class="submit-modal" @click="handleSubmit">{{ button }}</button>
       </div>
     </div>
 </template>
@@ -22,7 +22,9 @@ export default {
     return {
       password: '',
       email: '',
-      role: '',
+      roles: {
+        admin: false,
+      },
     };
   },
   props: {
@@ -35,13 +37,13 @@ export default {
     } 
   },
   methods: {
-    addFunction() {
+    handleSubmit() {
       this.$emit('click', {
         password: this.password,
         email: this.email,
-        role: this.role,
+        roles: this.roles,
       });
-      console.log(this.role);
+      console.log(this.roles.admin);
     },
   }
 };

@@ -1,7 +1,8 @@
 <template>
   <div class="credentials">
     <div class="login-form">
-      <img src="../assets/logo-2.png" alt="">
+      <nav-component v-if="component" :userName="userName"/>
+      <img src="../assets/logo-2.png" alt="burger-queer-logo">
       <h2>Inicia sesión</h2>
       <input v-model="email" class="input" type="email" placeholder="email">
       <input v-model="password" class="input" type="password" placeholder="contraseña">
@@ -20,13 +21,18 @@
 
 <script>
 import auth from '../controllers/auth';
+import NavComponent from '../components/NavComponent';
 
 export default {
   data() {
     return {
       email: '',
       password: '',
+      component: false
     };
+  },
+  components: {
+    NavComponent
   },
   methods: {
     handleSendForm(e) {
@@ -37,7 +43,6 @@ export default {
         };
       auth(userCredentials)
         .then((resp)=> {
-          console.log(userCredentials, resp);
           if (resp.token){
             window.localStorage.setItem('token', resp.token);
             this.$router.push('/manager/employees');
@@ -45,6 +50,12 @@ export default {
         })
     },
   },
+  computed: {
+    userName() {
+      const user = this.email.substring(0, this.email.lastIndexOf("@"));
+      return user;
+    },
+  }
 };
 
 </script>

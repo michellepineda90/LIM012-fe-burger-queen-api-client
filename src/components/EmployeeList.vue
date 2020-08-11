@@ -1,8 +1,8 @@
 <template>
     <div class="employees-list">
-      <div v-for="(user, index) in users" :key="index" class="each-employee">
+      <div v-for="(user, index) in users" :key="user._id" class="each-employee">
         <h3> {{ user.email }} </h3>
-        <h3 class="employee-role"> {{ (user.role == 'Administrador') ? 'Admin' : 'User' }} </h3>
+        <h3 class="employee-role"> {{ user.roles.admin === true ? 'Admin' : 'User' }} </h3>
         <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
         <button @click="showConfirmationModal" class="delete-employee-btn"></button>
         <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
@@ -33,10 +33,10 @@ export default {
     };
   },
   methods: {
-    showEditModal(index) {
+    showEditModal(userId) {
       this.modal = true;
       const userToEdit = this.users.filter(function(user) {
-        return index === user._id;
+        return userId === user._id;
       });
       this.$emit('click', userToEdit[0]);
       this.email=userToEdit[0].email;

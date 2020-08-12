@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import eventBus from '../main';
+import { eventBus } from '../main';
 
 export default {
   name: 'NavComponent',

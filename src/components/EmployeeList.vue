@@ -6,7 +6,7 @@
         <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
         <button @click="showConfirmationModal" class="delete-employee-btn"></button>
         <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
-        @close="confirmation=false" />
+        @close="confirmation = false" />
       </div>
       <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"/>
     </div>
@@ -38,14 +38,14 @@ export default {
       const userToEdit = this.users.filter(function(user) {
         return userId === user._id;
       });
+      console.log(userToEdit);
       this.$emit('click', userToEdit[0]);
-      this.email=userToEdit[0].email;
+      this.email = userToEdit[0].email;
     },
     showConfirmationModal() {
-      console.log('i clicked');
       this.confirmation = true;
       console.log(this.confirmation);
-    }
+    },
   },
 };
 

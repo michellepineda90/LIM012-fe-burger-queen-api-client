@@ -18,6 +18,7 @@
 
 <script>
 export default {
+  name: 'ModalEmployee',
   data() {
     return {
       password: '',
@@ -43,7 +44,6 @@ export default {
         email: this.email,
         roles: this.roles,
       });
-      console.log(this.roles.admin);
     },
   }
 };

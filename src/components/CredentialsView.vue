@@ -1,7 +1,6 @@
 <template>
   <div class="credentials">
     <div class="login-form">
-      <nav-component v-if="component" :userName="userName"/>
       <img src="../assets/logo-2.png" alt="burger-queer-logo">
       <h2>Inicia sesión</h2>
       <input v-model="email" class="input" type="email" placeholder="email">
@@ -20,8 +19,8 @@
 </template>
 
 <script>
+import { eventBus } from '../main';
 import auth from '../controllers/auth';
-import NavComponent from '../components/NavComponent';
 
 export default {
   data() {
@@ -30,9 +29,6 @@ export default {
       password: '',
       component: false
     };
-  },
-  components: {
-    NavComponent
   },
   methods: {
     handleSendForm(e) {
@@ -50,12 +46,12 @@ export default {
         })
     },
   },
-  computed: {
-    userName() {
-      const user = this.email.substring(0, this.email.lastIndexOf("@"));
-      return user;
-    },
-  }
+  watch: {
+    email(){
+      console.log(eventBus);
+      eventBus.$emit('emailChanged', this.email);
+    }
+  },
 };
 
 </script>

@@ -1,6 +1,7 @@
 <template>
   <div class="manager">
-    <nav-component :fullname="userName"/>
+    <!-- <nav-component :fullname="userName"/> -->
+    <nav-component />
     <router-link to="" tag="button" class="btn-prev"></router-link>
     <employee-list :users="users" @click="getUserData"/>
     <router-link to="" tag="button" class="btn-next"></router-link>
@@ -8,11 +9,8 @@
         <h3>Agregar trabajador</h3>
         <button class="btn-new-employee" @click="modal=true"></button>
     </div>
-    <modal-employee 
-      v-if="modal" 
-      @close="modal=false" 
-      @click="handleAddEmployee" 
-      :user="user" button="Agregar Trabajador" />
+    <modal-employee v-if="modal" @close="modal=false" @click="handleAddEmployee" :user="user" 
+    button="Agregar Trabajador" />
     <div class="buttons">
         <router-link to="/manager/employees" tag="button" class="btn-manager employees">Trabajadores</router-link>
         <router-link to="" tag="button" class="btn-manager">Productos</router-link>
@@ -20,7 +18,6 @@
   </div>
   <!-- TODO:
   1. Vincular el nombre del usuario desde CredentialsView
-  2. Hacer renderizado condicional de componente trabajadores/productos con default en trabajadores
   -->
 </template>
 
@@ -32,7 +29,6 @@ import EmployeeList from './EmployeeList.vue';
 import ModalEmployee from './ModalEmployee.vue';
 
 const token = 'qwerryuipuq';
-// debería obtener el token del CredentialsView?
 
 export default {
   name: 'managerView',
@@ -58,8 +54,7 @@ export default {
   methods: {
     handleAddEmployee(employee) {
       const newEmployee = {
-        // Borrar luego el id
-        _id: Math.random() * 1000,
+        _id: Math.floor(Math.random() * 1000),
         email: employee.email,
         password: employee.password,
         roles: employee.roles,
@@ -68,9 +63,9 @@ export default {
         .then(response => (this.users = [...this.users, response]))
         .then(this.modal = false); 
     },
-    getUserData(user){
+    getUserData(user) {
       return user.email;
-    }
+    },
   }
 };
 

@@ -1,11 +1,11 @@
 <template>
-    <div v-if="visible" class="modal">
+    <div class="modal">
       <div class="modal-employee">
         <h2 class="conf-text">¿Estás seguro que deseas realizar esta acción?</h2>
-        <button class="btn-close-modal" @click="close"></button>
+        <button class="btn-close-modal" @click="$emit('close')"></button>
         <div class="button-enclosure">
           <button class="accept" @click="deleteEmployee">Sí</button>
-          <button class="decline" @click="close">No</button>
+          <button class="decline" @click="$emit('close')">No</button>
         </div>
       </div>
     </div>
@@ -16,7 +16,6 @@
 export default {
   data() {
     return {
-      visible: false,
     };
   },
   props: ['eliminar', 'id'],

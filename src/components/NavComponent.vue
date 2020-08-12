@@ -1,22 +1,38 @@
 <template>
     <div class="nav-style">
-        <h2>¡Bienvenido {{ fullname }}!</h2>
+        <!-- <h2>¡Bienvenido {{ fullname }}!</h2> -->
+        <h2>¡Bienvenido {{ nameFromBus }}!</h2>
         <router-link to="/" tag="h2" class="sign-out" @click.native="logout">Cerrar sesión</router-link>
     </div>
 </template>
 
 <script>
+import eventBus from '../main';
+
 export default {
   name: 'NavComponent',
-  props: {
-    fullname: String,
+//   props: {
+//     fullname: String,
+//   },
+  data() {
+    return {
+      nameFromBus: '',
+    };
   },
   methods: {
       logout() {
         window.localStorage.removeItem('token');
         this.$router.push('/');
       }
-  }
+  },
+  created() {
+    const vm = this;
+    eventBus.$on('emailChanged', function(payload) {
+        console.log(payload);
+        // eventBus. la variable en data en el eventBus del main
+        vm.nameFromBus = payload;
+    });
+  },
 };
 </script>
 

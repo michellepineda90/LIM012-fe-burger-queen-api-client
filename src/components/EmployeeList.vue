@@ -8,7 +8,8 @@
         <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
         @close="confirmation = false" />
       </div>
-      <modal-employee v-if="modal" @close="modal=false" :editEmail="email" button="Guardar cambios"/>
+      <modal-employee v-if="modal" @close="modal = false" :editEmail="email" 
+      :editRole="roles.admin" button="Guardar cambios"/>
     </div>
 </template>
 
@@ -38,13 +39,12 @@ export default {
       const userToEdit = this.users.filter(function(user) {
         return userId === user._id;
       });
-      console.log(userToEdit);
       this.$emit('click', userToEdit[0]);
       this.email = userToEdit[0].email;
+      this.roles = userToEdit[0].roles;
     },
     showConfirmationModal() {
       this.confirmation = true;
-      console.log(this.confirmation);
     },
   },
 };

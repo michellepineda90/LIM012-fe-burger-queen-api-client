@@ -31,10 +31,12 @@ export default {
   props: {
     button: String,
     editEmail: String,
+    editRole: Boolean,
   },
   mounted () {
     if (this.button === 'Guardar cambios') {
       this.email = this.editEmail;
+      this.roles.admin = this.editRole;
     } 
   },
   methods: {

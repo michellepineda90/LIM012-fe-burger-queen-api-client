@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { eventBus } from '../main';
+// import { eventBus } from '../main';
 import auth from '../controllers/auth';
 
 export default {
@@ -46,12 +46,12 @@ export default {
         })
     },
   },
-  watch: {
-    email(){
-      console.log(eventBus);
-      eventBus.$emit('emailChanged', this.email);
-    }
-  },
+  // watch: {
+  //   email(){
+  //     console.log(eventBus);
+  //     eventBus.$emit('emailChanged', this.email);
+  //   }
+  // },
 };
 
 </script>

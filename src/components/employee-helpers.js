@@ -1,6 +1,6 @@
 export const defaultUser = () => ({
-    email: '',
-    roles: {
-      admin: false,
-    },
+  email: '',
+  roles: {
+    admin: false,
+  },
 });

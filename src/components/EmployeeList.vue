@@ -1,35 +1,57 @@
 <template>
-    <div class="employees-list">
-      <div v-for="(user, index) in users" :key="user._id" class="each-employee">
-        <h3> {{ user.email }} </h3>
-        <h3 class="employee-role"> {{ user.roles.admin === true ? 'Admin' : 'User' }} </h3>
-        <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
-        <button @click="showDeleteConfirmationModal" class="delete-employee-btn"></button>
-        <confirmation-modal v-if="shouldShowConfirmation" :id="user._id" :ref="'modal_' + index" 
-        @close="onConfirmationClose" />
-      </div>
-      <modal-employee
-        v-if="shouldShowEditModal"
-        :userToEdit="userToEdit"
-        :isEdition="true"
-        @close="onEditClose" />
+  <div class="employees-list">
+    <div
+      v-for="(user, index) in users"
+      :key="user._id"
+      class="each-employee"
+    >
+      <h3> {{ user.email }} </h3>
+      <h3 class="employee-role">
+        {{ user.roles.admin === true ? 'Admin' : 'User' }}
+      </h3>
+      <button
+        class="edit-employee-btn"
+        @click="showEditModal(user._id)"
+      />
+      <button
+        class="delete-employee-btn"
+        @click="showDeleteConfirmationModal"
+      />
+      <confirmation-modal
+        v-if="shouldShowConfirmation"
+        :id="user._id"
+        :ref="'modal_' + index"
+        @close="onConfirmationClose"
+      />
     </div>
+    <modal-employee
+      v-if="shouldShowEditModal"
+      :user-to-edit="userToEdit"
+      :is-edition="true"
+      @close="onEditClose"
+      @onSubmit="onEditSave"
+    />
+  </div>
 </template>
 
 <script>
 
 import ConfirmationModal from './ConfirmationModal.vue';
 import ModalEmployee from './ModalEmployee.vue';
+import { editEmployee } from '../controllers/users';
 import { defaultUser } from './employee-helpers';
+
+const AUTH_TOKEN_NAME = 'token';
+const token = window.localStorage.getItem(AUTH_TOKEN_NAME);
 
 export default {
   name: 'EmployeeList',
-  props: {
-    users: Array,
-  },
   components: {
     ModalEmployee,
     ConfirmationModal,
+  },
+  props: {
+    users: Array,
   },
   data() {
     return {
@@ -41,9 +63,7 @@ export default {
   methods: {
     showEditModal(userId) {
       this.shouldShowEditModal = true;
-      const userToEdit = this.users.filter(function(user) {
-        return userId === user._id;
-      });
+      const userToEdit = this.users.filter((user) => userId === user._id);
       this.userToEdit = userToEdit[0];
     },
     showDeleteConfirmationModal() {
@@ -55,6 +75,9 @@ export default {
     onEditClose() {
       this.shouldShowEditModal = false;
       this.userToEdit = defaultUser();
+    },
+    onEditSave(user) {
+      editEmployee(token, user);
     },
   },
 };

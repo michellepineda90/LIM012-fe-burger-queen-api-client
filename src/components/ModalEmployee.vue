@@ -1,53 +1,66 @@
 <template>
-    <div class="modal">
-      <div class="modal-employee">
-          <h2>Email</h2>
-          <input type="email" v-model="email">
-          <h2>Password</h2>
-          <input type="password" v-model="password">
-          <h2>Puesto</h2>
-          <select v-model="roles">
-            <option :value="{ admin: true }">Administrador</option>
-            <option :value="{ admin: false }">Usuario</option>
-          </select>
-          <button class="btn-close-modal" @click="$emit('close')"></button>
-          <button class="submit-modal" @click="handleSubmit">{{ button }}</button>
-      </div>
+  <div class="modal">
+    <div class="modal-employee">
+      <h2>Email</h2>
+      <input type="email" v-model="user.email">
+      <h2>Password</h2>
+      <input type="password" v-model="user.password">
+      <h2>Puesto</h2>
+      <select v-model="user.roles">
+        <option :value="{ admin: true }">Administrador</option>
+        <option :value="{ admin: false }">Usuario</option>
+      </select>
+      <button class="btn-close-modal" @click="closeModal"></button>
+      <button class="submit-modal" @click="handleSubmit">
+        {{ saveOrCreateText }}
+      </button>
     </div>
+  </div>
 </template>
 
 <script>
+
+import { defaultUser } from './employee-helpers';
+
 export default {
   name: 'ModalEmployee',
   data() {
     return {
-      password: '',
-      email: '',
-      roles: {
-        admin: false,
+      user: {
+        password: '',
+        email: '',
+        roles: {
+          admin: false,
+        },
       },
     };
   },
   props: {
-    button: String,
-    editEmail: String,
-    editRole: Boolean,
+    isEdition: {
+      type: Boolean,
+      default: false,
+    },
+    userToEdit: {
+      type: Object,
+      default: defaultUser,
+    },
   },
   mounted () {
-    if (this.button === 'Guardar cambios') {
-      this.email = this.editEmail;
-      this.roles.admin = this.editRole;
-    } 
+    this.user = Object.assign({}, this.user, this.userToEdit); 
+  },
+  computed: {
+    saveOrCreateText() {
+      return this.isEdition ? 'Guardar cambios' : 'Agregar Trabajador';
+    },
   },
   methods: {
     handleSubmit() {
-      this.$emit('click', {
-        password: this.password,
-        email: this.email,
-        roles: this.roles,
-      });
+      this.$emit('onSubmit', this.user);
     },
-  }
+    closeModal() {
+      this.$emit('close');
+    },
+  },
 };
 </script>
 

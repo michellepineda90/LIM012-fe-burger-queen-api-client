@@ -4,12 +4,15 @@
         <h3> {{ user.email }} </h3>
         <h3 class="employee-role"> {{ user.roles.admin === true ? 'Admin' : 'User' }} </h3>
         <button @click="showEditModal(user._id)" class="edit-employee-btn"></button>
-        <button @click="showConfirmationModal" class="delete-employee-btn"></button>
-        <confirmation-modal v-if="confirmation" :id="user._id" :ref="'modal_' + index" 
-        @close="confirmation = false" />
+        <button @click="showDeleteConfirmationModal" class="delete-employee-btn"></button>
+        <confirmation-modal v-if="shouldShowConfirmation" :id="user._id" :ref="'modal_' + index" 
+        @close="onConfirmationClose" />
       </div>
-      <modal-employee v-if="modal" @close="modal = false" :editEmail="email" 
-      :editRole="roles.admin" button="Guardar cambios"/>
+      <modal-employee
+        v-if="shouldShowEditModal"
+        :userToEdit="userToEdit"
+        :isEdition="true"
+        @close="onEditClose" />
     </div>
 </template>
 
@@ -17,6 +20,7 @@
 
 import ConfirmationModal from './ConfirmationModal.vue';
 import ModalEmployee from './ModalEmployee.vue';
+import { defaultUser } from './employee-helpers';
 
 export default {
   name: 'EmployeeList',
@@ -29,22 +33,28 @@ export default {
   },
   data() {
     return {
-      modal: false,
-      confirmation: false,
+      userToEdit: defaultUser(),
+      shouldShowEditModal: false,
+      shouldShowConfirmation: false,
     };
   },
   methods: {
     showEditModal(userId) {
-      this.modal = true;
+      this.shouldShowEditModal = true;
       const userToEdit = this.users.filter(function(user) {
         return userId === user._id;
       });
-      this.$emit('click', userToEdit[0]);
-      this.email = userToEdit[0].email;
-      this.roles = userToEdit[0].roles;
+      this.userToEdit = userToEdit[0];
     },
-    showConfirmationModal() {
-      this.confirmation = true;
+    showDeleteConfirmationModal() {
+      this.shouldShowConfirmation = true;
+    },
+    onConfirmationClose() {
+      this.shouldShowConfirmation = false;
+    },
+    onEditClose() {
+      this.shouldShowEditModal = false;
+      this.userToEdit = defaultUser();
     },
   },
 };
@@ -74,7 +84,7 @@ export default {
 
         h3 {
           font-family: Livvic, Helvetica, Arial, sans-serif;
-          font-size: 25px;
+          font-size: 22px;
           width: 10%;
         }
 

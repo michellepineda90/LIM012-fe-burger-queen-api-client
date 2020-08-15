@@ -2,16 +2,34 @@
   <div class="modal">
     <div class="modal-employee">
       <h2>Email</h2>
-      <input type="email" v-model="user.email">
+      <input
+        v-model="user.email"
+        type="email"
+      >
+      <!-- <template v-if="!isEdition"> -->
       <h2>Password</h2>
-      <input type="password" v-model="user.password">
+      <input
+        v-model="user.password"
+        type="password"
+      >
+      <!-- </template> -->
       <h2>Puesto</h2>
       <select v-model="user.roles">
-        <option :value="{ admin: true }">Administrador</option>
-        <option :value="{ admin: false }">Usuario</option>
+        <option :value="{ admin: true }">
+          Administrador
+        </option>
+        <option :value="{ admin: false }">
+          Usuario
+        </option>
       </select>
-      <button class="btn-close-modal" @click="closeModal"></button>
-      <button class="submit-modal" @click="handleSubmit">
+      <button
+        class="btn-close-modal"
+        @click="closeModal"
+      />
+      <button
+        class="submit-modal"
+        @click="handleSubmit"
+      >
         {{ saveOrCreateText }}
       </button>
     </div>
@@ -24,6 +42,16 @@ import { defaultUser } from './employee-helpers';
 
 export default {
   name: 'ModalEmployee',
+  props: {
+    isEdition: {
+      type: Boolean,
+      default: false,
+    },
+    userToEdit: {
+      type: Object,
+      default: defaultUser,
+    },
+  },
   data() {
     return {
       user: {
@@ -35,23 +63,13 @@ export default {
       },
     };
   },
-  props: {
-    isEdition: {
-      type: Boolean,
-      default: false,
-    },
-    userToEdit: {
-      type: Object,
-      default: defaultUser,
-    },
-  },
-  mounted () {
-    this.user = Object.assign({}, this.user, this.userToEdit); 
-  },
   computed: {
     saveOrCreateText() {
       return this.isEdition ? 'Guardar cambios' : 'Agregar Trabajador';
     },
+  },
+  mounted() {
+    this.user = { ...this.user, ...this.userToEdit };
   },
   methods: {
     handleSubmit() {

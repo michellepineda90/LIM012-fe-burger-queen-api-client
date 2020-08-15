@@ -51,7 +51,10 @@ export default {
     ConfirmationModal,
   },
   props: {
-    users: Array,
+    users: {
+      type: Array,
+      default: () => [],
+    },
   },
   data() {
     return {
@@ -60,6 +63,11 @@ export default {
       shouldShowConfirmation: false,
     };
   },
+  // computed: {
+  //   showAdminOrUser() {
+  //     return this.
+  //   },
+  // },
   methods: {
     showEditModal(userId) {
       this.shouldShowEditModal = true;
@@ -77,7 +85,11 @@ export default {
       this.userToEdit = defaultUser();
     },
     onEditSave(user) {
-      editEmployee(token, user);
+      editEmployee(token, user)
+        .then(console.log(this.userToEdit))
+        .then(this.userToEdit = user)
+        .then(console.log(this.userToEdit))
+        .then(this.shouldShowEditModal = false);
     },
   },
 };

@@ -2,23 +2,53 @@
   <div class="manager">
     <!-- <nav-component :fullname="userName"/> -->
     <nav-component />
-    <router-link to="" tag="button" class="btn-prev"></router-link>
-    <employee-list :users="users" @click="getUserData"/>
-    <router-link to="" tag="button" class="btn-next"></router-link>
+    <router-link
+      to=""
+      tag="button"
+      class="btn-prev"
+    />
+    <employee-list
+      :users="users"
+      @click="getUserData"
+    />
+    <router-link
+      to=""
+      tag="button"
+      class="btn-next"
+    />
     <div class="new-employee">
-        <h3>Agregar trabajador</h3>
-        <button class="btn-new-employee" @click="modal=true"></button>
+      <h3>Agregar trabajador</h3>
+      <button
+        class="btn-new-employee"
+        @click="modal=true"
+      />
     </div>
-    <modal-employee v-if="modal" @close="modal=false" @onSubmit="handleAddEmployee" />
+    <modal-employee
+      v-if="modal"
+      @close="modal=false"
+      @onSubmit="handleAddEmployee"
+    />
     <div class="buttons">
-        <router-link to="/manager/employees" tag="button" class="btn-manager employees">Trabajadores</router-link>
-        <router-link to="" tag="button" class="btn-manager">Productos</router-link>
+      <router-link
+        to="/manager/employees"
+        tag="button"
+        class="btn-manager employees"
+      >
+        Trabajadores
+      </router-link>
+      <router-link
+        to=""
+        tag="button"
+        class="btn-manager"
+      >
+        Productos
+      </router-link>
     </div>
   </div>
 </template>
 
 <script>
-import { getEmployees, addEmployee } from '../controllers/users.js'
+import { getEmployees, addEmployee } from '../controllers/users.js';
 
 import NavComponent from './NavComponent.vue';
 import EmployeeList from './EmployeeList.vue';
@@ -27,9 +57,17 @@ import ModalEmployee from './ModalEmployee.vue';
 const token = 'qwerryuipuq';
 
 export default {
-  name: 'managerView',
-   props: {
-    userName: String,
+  name: 'ManagerView',
+  components: {
+    NavComponent,
+    EmployeeList,
+    ModalEmployee,
+  },
+  props: {
+    userName: {
+      type: String,
+      default: '',
+    },
   },
   data() {
     return {
@@ -38,14 +76,9 @@ export default {
       user: {},
     };
   },
-  components: {
-    NavComponent,
-    EmployeeList,
-    ModalEmployee,
-  },
-  mounted () {
+  mounted() {
     getEmployees(token)
-      .then(response => (this.users = response));
+      .then((response) => (this.users = response));
   },
   methods: {
     handleAddEmployee(employee) {
@@ -56,13 +89,13 @@ export default {
         roles: employee.roles,
       };
       addEmployee(token, newEmployee)
-        .then(response => (this.users = [...this.users, response]))
-        .then(this.modal = false); 
+        .then((response) => (this.users = [...this.users, response]))
+        .then(this.modal = false);
     },
     getUserData(user) {
       return user.email;
     },
-  }
+  },
 };
 
 </script>

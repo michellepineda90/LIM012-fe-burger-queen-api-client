@@ -1,24 +1,48 @@
 <template>
-    <div class="modal">
-      <div class="modal-employee">
-        <h2 class="conf-text">¿Estás seguro que deseas realizar esta acción?</h2>
-        <button class="btn-close-modal" @click="$emit('close')"></button>
-        <div class="button-enclosure">
-          <button class="accept" @click="handleDelete">Sí</button>
-          <button class="decline" @click="$emit('close')">No</button>
-        </div>
+  <div class="modal">
+    <div class="modal-employee">
+      <h2 class="conf-text">
+        ¿Estás seguro que deseas realizar esta acción?
+      </h2>
+      <button
+        class="btn-close-modal"
+        @click="$emit('close')"
+      />
+      <div class="button-enclosure">
+        <button
+          class="accept"
+          @click="handleConfirm"
+        >
+          Sí
+        </button>
+        <button
+          class="decline"
+          @click="$emit('close')"
+        >
+          No
+        </button>
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 
 export default {
+  props: {
+    // eliminar: {
+    //   type: Array,
+    //   default: () => [],
+    // },
+    id: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
     };
   },
-  props: ['eliminar', 'id'],
   methods: {
     // eslint-disable-next-line no-unused-vars
     show(index) {
@@ -27,13 +51,9 @@ export default {
     close() {
       this.visible = false;
     },
-    handleDelete() {
-      this.$emit('click', {
-        password: this.password,
-        email: this.email,
-        roles: this.roles,
-      });
-    }
+    handleConfirm() {
+      this.$emit('onDelete', this.user);
+    },
   },
 };
 

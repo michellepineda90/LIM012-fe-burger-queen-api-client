@@ -1,18 +1,35 @@
 <template>
   <div class="credentials">
     <div class="login-form">
-      <img src="../assets/logo-2.png" alt="burger-queer-logo">
+      <img
+        src="../assets/logo-2.png"
+        alt="burger-queer-logo"
+      >
       <h2>Inicia sesión</h2>
-      <input v-model="email" class="input" type="email" placeholder="email">
-      <input v-model="password" class="input" type="password" placeholder="contraseña">
-      <router-link to="/manager/employees" tag="button" class="login-btn" 
-      @click.native="handleSendForm" >
+      <input
+        v-model="email"
+        class="input"
+        type="email"
+        placeholder="email"
+      >
+      <input
+        v-model="password"
+        class="input"
+        type="password"
+        placeholder="contraseña"
+      >
+      <router-link
+        to="/manager/employees"
+        tag="button"
+        class="login-btn"
+        @click.native="handleSendForm"
+      >
         Entrar
       </router-link>
       <!-- TODO:
       1. User input validation...
-      2. Redirigir a la vista correspondiente dependiendo del rol de usuario aquí y si ya tiene token 
-      en el router
+      2. Redirigir a la vista correspondiente dependiendo del rol de usuario aquí
+      y si ya tiene token en el router
       -->
     </div>
   </div>
@@ -27,7 +44,7 @@ export default {
     return {
       email: '',
       password: '',
-      component: false
+      component: false,
     };
   },
   methods: {
@@ -35,15 +52,15 @@ export default {
       e.preventDefault();
       const userCredentials = {
         email: this.email,
-        password: this.password
-        };
+        password: this.password,
+      };
       auth(userCredentials)
-        .then((resp)=> {
-          if (resp.token){
+        .then((resp) => {
+          if (resp.token) {
             window.localStorage.setItem('token', resp.token);
             this.$router.push('/manager/employees');
           }
-        })
+        });
     },
   },
   // watch: {

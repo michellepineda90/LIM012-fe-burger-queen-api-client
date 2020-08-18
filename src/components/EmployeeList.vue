@@ -21,6 +21,7 @@
         v-if="shouldShowConfirmation"
         :id="user._id"
         :ref="'modal_' + index"
+        @onDelete="confirmDelete(user)"
         @close="onConfirmationClose"
       />
     </div>
@@ -38,7 +39,7 @@
 
 import ConfirmationModal from './ConfirmationModal.vue';
 import ModalEmployee from './ModalEmployee.vue';
-import { editEmployee } from '../controllers/users';
+import { editEmployee, deleteEmployee } from '../controllers/users';
 import { defaultUser } from './employee-helpers';
 
 const AUTH_TOKEN_NAME = 'token';
@@ -63,15 +64,12 @@ export default {
       shouldShowConfirmation: false,
     };
   },
-  // computed: {
-  //   showAdminOrUser() {
-  //     return this.
-  //   },
-  // },
   methods: {
     showEditModal(userId) {
       this.shouldShowEditModal = true;
+      // eslint-disable-next-line no-underscore-dangle
       const userToEdit = this.users.filter((user) => userId === user._id);
+      // eslint-disable-next-line prefer-destructuring
       this.userToEdit = userToEdit[0];
     },
     showDeleteConfirmationModal() {
@@ -86,10 +84,13 @@ export default {
     },
     onEditSave(user) {
       editEmployee(token, user)
-        .then(console.log(this.userToEdit))
-        .then(this.userToEdit = user)
-        .then(console.log(this.userToEdit))
-        .then(this.shouldShowEditModal = false);
+        // .then(this.userToEdit = user)
+        .then(this.shouldShowEditModal = false)
+        .then(this.$emit('dataUpdated'));
+    },
+    confirmDelete(user) {
+      deleteEmployee(token, user)
+        .then(this.shouldShowConfirmation = false);
     },
   },
 };

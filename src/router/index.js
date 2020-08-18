@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import jwtDecode from 'jwt-decode';
-import Credentials from '../components/CredentialsView';
+import Credentials from '../components/CredentialsView.vue';
 
 const USER_ROLE_ADMIN = 'Admin';
 const AUTH_TOKEN_NAME = 'token';
@@ -29,7 +29,7 @@ const routes = [
       } else {
         next();
       }
-    }
+    },
   },
   {
     path: '/manager/employees',
@@ -48,11 +48,11 @@ const routes = [
         } catch (error) {
           next('/');
         }
-      } else { 
+      } else {
         next('/');
       }
-    }
-  }
+    },
+  },
 ];
 
 const router = new VueRouter({

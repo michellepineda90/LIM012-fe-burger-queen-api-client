@@ -10,6 +10,7 @@
     <employee-list
       :users="users"
       @click="getUserData"
+      @dataUpdated="update"
     />
     <router-link
       to=""
@@ -48,7 +49,7 @@
 </template>
 
 <script>
-import { getEmployees, addEmployee } from '../controllers/users.js';
+import { getEmployees, addEmployee } from '../controllers/users';
 
 import NavComponent from './NavComponent.vue';
 import EmployeeList from './EmployeeList.vue';
@@ -77,8 +78,7 @@ export default {
     };
   },
   mounted() {
-    getEmployees(token)
-      .then((response) => (this.users = response));
+    this.update();
   },
   methods: {
     handleAddEmployee(employee) {
@@ -89,11 +89,17 @@ export default {
         roles: employee.roles,
       };
       addEmployee(token, newEmployee)
+        // eslint-disable-next-line no-return-assign
         .then((response) => (this.users = [...this.users, response]))
         .then(this.modal = false);
     },
     getUserData(user) {
       return user.email;
+    },
+    update() {
+      getEmployees(token)
+      // eslint-disable-next-line no-return-assign
+        .then((response) => (this.users = response));
     },
   },
 };

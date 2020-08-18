@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 export const getEmployees = (token) => fetch('http://localhost:3000/users', {
   method: 'GET',
   headers: {
